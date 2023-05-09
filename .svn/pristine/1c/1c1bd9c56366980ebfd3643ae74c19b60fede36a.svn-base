@@ -1,0 +1,53 @@
+package kr.or.ddit.approval.service;
+
+import java.util.Map;
+
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+
+import kr.or.ddit.approval.vo.ApFormVO;
+import kr.or.ddit.approval.vo.RecVO;
+import kr.or.ddit.employee.vo.EmployeeVO;
+import kr.or.ddit.mapper.AppMapper;
+
+@Service
+public class AppServiceImpl implements IAppService {
+
+	@Inject
+	private AppMapper appMapper;
+	
+	
+
+	@Override
+	public void register(RecVO rec)throws Exception{
+		appMapper.create(rec);
+	}
+
+//	@Override
+//	public ApFormVO selectForm(String text) {
+//		ApFormVO form = appMapper.selectForm(text);
+//		return form;
+//	}
+
+
+//	@Override
+//	public void pwCheck(Map<String, String> Mpassword, HttpServletRequest request) {
+//		String result = null;
+//		HttpSession session = request.getSession(); 
+//		String password = (String)session.getAttribute("empPw");
+//		String chkPw = Mpassword.get("Mpassword");
+//	}
+
+	
+
+
+	@Override
+	public ApFormVO selectForm(String apfName) {
+		return appMapper.selectForm(apfName);
+	}
+
+}

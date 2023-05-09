@@ -1,0 +1,27 @@
+package kr.or.ddit.approval.service;
+
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Service;
+
+import kr.or.ddit.approval.vo.ApFormVO;
+import kr.or.ddit.approval.vo.RecVO;
+import kr.or.ddit.mapper.AppMapper;
+
+@Service
+public class AppServiceImpl implements IAppService {
+
+	@Inject
+	private AppMapper appMapper;
+	
+	@Override
+	public ApFormVO selectForm(String apfName) {
+		return appMapper.selectForm(apfName);
+	}
+
+	@Override
+	public void register(RecVO rec)throws Exception{
+		appMapper.create(rec);
+	}
+
+}

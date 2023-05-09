@@ -1,0 +1,57 @@
+package kr.or.ddit.employee.service;
+
+import java.util.List;
+
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Service;
+
+import kr.or.ddit.attfile.vo.AttFileVO;
+import kr.or.ddit.employee.vo.EmployeeVO;
+import kr.or.ddit.mapper.EmployeeMapper;
+
+@Service
+public class EmpServiceImpl implements IEmpService {
+
+	@Inject
+	private EmployeeMapper empMapper;
+	
+	@Override
+	public List<EmployeeVO> list() {
+		return empMapper.list();
+	}
+
+	@Override
+	public EmployeeVO selectMember(String id) {
+		return empMapper.selectMember(id);
+	}
+
+	@Override
+	public String idFind(EmployeeVO empVO) {
+		return empMapper.idFind(empVO);
+	}
+
+	@Override
+	public String pwFind(EmployeeVO empVO) {
+		return empMapper.pwFind(empVO);
+	}
+
+	@Override
+	public int fileup(AttFileVO afVO) {
+		// TODO Auto-generated method stub
+		// 사진이 존재하면 update. 없으면 insert
+		
+		int count;
+		return 1;
+	}
+
+	
+	
+	
+	
+	
+}
+
+
+
+

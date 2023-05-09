@@ -1,0 +1,18 @@
+package kr.or.ddit.mail.service;
+
+import java.util.List;
+
+import kr.or.ddit.mail.vo.MailVO;
+
+public interface IMailService {
+
+	//받은메일함
+	public List<MailVO> recieveEMLList(MailVO mailVO);
+
+	//메일상세보기
+	public List<MailVO> detail(MailVO mailVO);
+
+	//보낸메일함
+	public List<MailVO> send(MailVO mailVO);
+
+}

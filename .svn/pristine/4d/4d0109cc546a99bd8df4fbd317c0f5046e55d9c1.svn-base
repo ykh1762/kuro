@@ -1,0 +1,371 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+ 
+ 
+ <div class="">
+        <!-- -------------------------------------------------------------- -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- -------------------------------------------------------------- -->
+        <div class="page-breadcrumb">
+          <div class="row">
+            <div class="col-5 align-self-center">
+              <h4 class="page-title">주소록</h4>
+              <div class="d-flex align-items-center">
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Library</li>
+                  </ol>
+                </nav>
+              </div>
+            </div>
+            <div class="col-7 align-self-center">
+              <div class="d-flex no-block justify-content-end align-items-center">
+                <div class="me-2">
+                  <div class="lastmonth"></div>
+                </div>
+                <div class="">
+                  <small>LAST MONTH</small>
+                  <h4 class="text-info mb-0 font-medium">$58,256</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- -------------------------------------------------------------- -->
+        <!-- End Bread crumb and right sidebar toggle -->
+        <!-- -------------------------------------------------------------- -->
+        <!-- -------------------------------------------------------------- -->
+        <!-- Container fluid  -->
+        <!-- -------------------------------------------------------------- -->
+        <div class="container-fluid">
+          <!-- -------------------------------------------------------------- -->
+          <!-- Start Page Content -->
+          <!-- -------------------------------------------------------------- -->
+          <div class="widget-content searchable-container list">
+            <!-- ---------------------
+                        start Contact
+                    ---------------- -->
+            <div class="card card-body">
+              <div class="row">
+                <div class="col-md-4 col-xl-2">
+                  <form>
+                    <input
+                      type="text"
+                      class="form-control product-search"
+                      id="input-search"
+                      placeholder="Search Contacts..."
+                    />
+                  </form>
+                </div>
+                <div
+                  class="
+                    col-md-8 col-xl-10
+                    text-end
+                    d-flex
+                    justify-content-md-end justify-content-center
+                    mt-3 mt-md-0
+                  "
+                >
+                  <div class="action-btn show-btn" style="display: none">
+                    <a
+                      href="javascript:void(0)"
+                      class="
+                        delete-multiple
+                        btn-light-danger btn
+                        me-2
+                        text-danger
+                        d-flex
+                        align-items-center
+                        font-medium
+                      "
+                    >
+                      <i data-feather="trash-2" class="feather-sm fill-white me-1"></i>
+                      Delete All Row</a
+                    >
+                  </div>
+                  <a href="javascript:void(0)" id="btn-add-contact" class="btn btn-info">
+                    <i data-feather="users" class="feather-sm fill-white me-1"> </i>
+                    Add Contact</a
+                  >
+                </div>
+              </div>
+            </div>
+            <!-- ---------------------
+                        end Contact
+                    ---------------- -->
+            <!-- Modal -->
+            <div
+              class="modal fade"
+              id="addContactModal"
+              tabindex="-1"
+              role="dialog"
+              aria-labelledby="addContactModalTitle"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header d-flex align-items-center">
+                    <h5 class="modal-title">Contact</h5>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="add-contact-box">
+                      <div class="add-contact-content">
+                        <form id="addContactModalTitle">
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="mb-3 contact-name">
+                                <input
+                                  type="text"
+                                  id="c-name"
+                                  class="form-control"
+                                  placeholder="Name"
+                                />
+                                <span class="validation-text text-danger"></span>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="mb-3 contact-email">
+                                <input
+                                  type="text"
+                                  id="c-email"
+                                  class="form-control"
+                                  placeholder="Email"
+                                />
+                                <span class="validation-text text-danger"></span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="mb-3 contact-occupation">
+                                <input
+                                  type="text"
+                                  id="c-occupation"
+                                  class="form-control"
+                                  placeholder="Occupation"
+                                />
+                              </div>
+                            </div>
+
+                            <div class="col-md-6">
+                              <div class="mb-3 contact-phone">
+                                <input
+                                  type="text"
+                                  id="c-phone"
+                                  class="form-control"
+                                  placeholder="Phone"
+                                />
+                                <span class="validation-text text-danger"></span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div class="mb-3 contact-location">
+                                <input
+                                  type="text"
+                                  id="c-location"
+                                  class="form-control"
+                                  placeholder="Location"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button id="btn-add" class="btn btn-success rounded-pill px-4">Add</button>
+                    <button id="btn-edit" class="btn btn-success rounded-pill px-4">Save</button>
+                    <button class="btn btn-danger rounded-pill px-4" data-bs-dismiss="modal">
+                      Discard
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="card card-body">
+              <div class="table-responsive">
+                <table class="table search-table v-middle text-nowrap">
+                  <thead class="header-item">
+                    <th>
+                      <div class="n-chk align-self-center text-center">
+                        <div class="form-check">
+                          <input
+                            type="checkbox"
+                            class="form-check-input secondary"
+                            id="contact-check-all"
+                          />
+                          <label class="form-check-label" for="contact-check-all"></label>
+                          <span class="new-control-indicator"></span>
+                        </div>
+                      </div>
+                    </th>
+                    <th>이름</th>
+                    <th>부서</th>
+                    <th>직급</th>
+                    <th>이메일</th>
+                    <th>핸드폰 번호</th>
+                  </thead>
+                  <tbody>
+                  <c:forEach items="${contactList }" var="contact" varStatus="i">
+                    <!-- start row -->
+                    <tr class="search-items">
+                      <td>
+                        <div class="n-chk align-self-center text-center">
+                          <div class="form-check">
+                            <input
+                              type="checkbox"
+                              class="form-check-input contact-chkbox primary"
+                              id="checkbox1"
+                            />
+                            <label class="form-check-label" for="checkbox1"></label>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="d-flex align-items-center">
+                          <img
+                            src="../../assets/images/users/1.jpg"
+                            alt="avatar"
+                            class="rounded-circle"
+                            width="35"
+                          />
+                          <div class="ms-2">
+                            <div class="user-meta-info">
+                              <h5 class="user-name mb-0" data-name="Emma Adams">${contact.conName }</h5>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="usr-email-addr" data-email="adams@mail.com"
+                          >${contact.conDep}</span
+                        >
+                      </td>
+                      <td>
+                        <span class="usr-location" data-location="Boston, USA">${contact.conPos }</span>
+                      </td>
+                      <td>
+                        <span class="usr-email-addr" data-email="adams@mail.com"
+                          >${contact.conEmail }</span
+                        >
+                      </td>
+                      <td>
+                        <span class="usr-ph-no" data-phone="+1 (070) 123-4567"
+                          >${contact.conTel }</span
+                        >
+                      </td>
+                      <td>
+                        <div class="action-btn">
+                          <a href="javascript:void(0)" class="text-info edit"
+                            ><i data-feather="star" class="feather-sm fill-white"></i
+                          ></a>
+                          <a href="javascript:void(0)" class="text-dark delete ms-2"
+                            ><i data-feather="trash-2" class="feather-sm fill-white"></i
+                          ></a>
+                        </div>
+                      </td>
+                    </tr>
+                    </c:forEach>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <!-- -------------------------------------------------------------- -->
+          <!-- End PAge Content -->
+          <!-- -------------------------------------------------------------- -->
+        </div>
+        <!-- Share Modal -->
+        <div
+          class="modal fade"
+          id="Sharemodel"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <form>
+                <div class="modal-header d-flex align-items-center">
+                  <h5 class="modal-title" id="exampleModalLabel">
+                    <i class="ri-share-fill me-2 align-middle"></i> Share With
+                  </h5>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  <div class="input-group mb-3">
+                    <button type="button" class="btn btn-info">
+                      <i class="ti-user text-white"></i>
+                    </button>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Enter Name Here"
+                      aria-label="Username"
+                    />
+                  </div>
+                  <div class="row">
+                    <div class="col-3 text-center">
+                      <a href="#Whatsapp" class="text-success">
+                        <i class="display-6 ri-whatsapp-fill"></i><br /><span class="text-muted"
+                          >Whatsapp</span
+                        >
+                      </a>
+                    </div>
+                    <div class="col-3 text-center">
+                      <a href="#Facebook" class="text-info">
+                        <i class="display-6 ri-facebook-fill"></i><br /><span class="text-muted"
+                          >Facebook</span
+                        >
+                      </a>
+                    </div>
+                    <div class="col-3 text-center">
+                      <a href="#Instagram" class="text-danger">
+                        <i class="display-6 ri-instagram-fill"></i><br /><span class="text-muted"
+                          >Instagram</span
+                        >
+                      </a>
+                    </div>
+                    <div class="col-3 text-center">
+                      <a href="#Skype" class="text-cyan">
+                        <i class="display-6 ri-skype-fill"></i><br /><span class="text-muted"
+                          >Skype</span
+                        >
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Close
+                  </button>
+                  <button type="submit" class="btn btn-success">
+                    <i class="ri-send-plane-fill align-middle"></i> Send
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        
+      </div>

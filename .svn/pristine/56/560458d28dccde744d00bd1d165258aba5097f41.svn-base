@@ -1,0 +1,30 @@
+package kr.or.ddit.employee.vo;
+
+import java.util.Date;
+
+import lombok.Data;
+
+@Data
+public class EmployeeVO {
+
+	private int empNo;
+	private int empBossNo;
+	private int afNo;
+	private int posNo;
+	private int depNo;
+	private String empName;
+	private String empAddr;
+	private String empAddr2;
+	private int empPostCode;
+	private Date empDate;
+	private String empEmail;
+	private String empTel;
+	private String empId;
+	private String empPw;
+	private String empMsg;
+	private int empYear;
+	private int empPv;
+	private Date emprDate;
+	private String empReg;
+	private String tCode;
+}

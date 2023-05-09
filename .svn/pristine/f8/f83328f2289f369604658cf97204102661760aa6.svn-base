@@ -1,0 +1,27 @@
+package kr.or.ddit.message.service;
+
+import java.util.List;
+
+import kr.or.ddit.attfile.vo.AttFileVO;
+import kr.or.ddit.contact.vo.ContactVO;
+import kr.or.ddit.employee.vo.EmployeeVO;
+import kr.or.ddit.message.vo.MesrecVO;
+import kr.or.ddit.message.vo.MessageVO;
+
+public interface IMessageService {
+
+	public List<MessageVO> getMessageList();
+
+	public List<EmployeeVO> getEmpByMsgList(List<MessageVO> messageList);
+
+	public MessageVO getMessage(String mesCode);
+
+	public EmployeeVO getEmpByMessage(MessageVO messageVO);
+
+	public AttFileVO getAf(String empNo);
+
+	public void write(MessageVO msgVO);
+
+	public List<ContactVO> getContactList();
+
+}

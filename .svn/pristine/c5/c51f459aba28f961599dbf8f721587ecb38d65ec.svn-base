@@ -1,0 +1,94 @@
+package kr.or.ddit.good.controller;
+
+
+
+import java.util.List;
+
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import kr.or.ddit.employee.vo.EmployeeVO;
+import kr.or.ddit.good.service.IGoodService;
+import kr.or.ddit.good.vo.GoodVO;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@Controller
+@RequestMapping("/good")
+public class GoodController {
+	/*
+	 * @Inject private IGoodService goodService;
+	 */
+
+	// 좋아요 목록
+	// 프로젝트 전체 목록
+//	@GetMapping("/list")
+	//public String goodList(Model model) {
+		//model.addAttribute("pageMain", "Works");
+		//model.addAttribute("pageDetail", "main");
+		//model.addAttribute("pageName", "Works 메인페이지");
+
+		/*
+		 * Object principal =
+		 * SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		 * UserDetails userDetails = (UserDetails) principal; String empno =
+		 * ((UserDetails) principal).getUsername();
+		 */
+		/*
+		 * List<GoodVO> GoodVOList = this.goodService.goodList(empno);
+		 * 
+		 * log.info("GoodVOList : " + GoodVOList);
+		 * 
+		 * model.addAttribute("GoodVOList", GoodVOList);
+		 * 
+		 * return "good/list"; }
+		 */
+	/*
+	 * // 좋아요 등록
+	 * 
+	 * @ResponseBody
+	 * 
+	 * @PostMapping("/createGood") public int createBookmark(@RequestBody GoodVO
+	 * GoodVO) { log.info("등록!!!!!!!!! ");
+	 * 
+	 * GoodVO.setEmpNo(empno); log.info("GoodVO : " + GoodVO);
+	 * 
+	 * int res = this.goodService.createGood(GoodVO); log.info("res : " + res);
+	 * 
+	 * return res; }
+	 * 
+	 * // 좋아요 삭제
+	 * 
+	 * @ResponseBody
+	 * 
+	 * @PostMapping("/deleteGood") public int deleteBookmark(@RequestBody GoodVO
+	 * GoodVO) { log.info("삭제!!!!!!!!! ");
+	 * 
+	 * 
+	 * GoodVO.setEmpNo(empno); log.info("GoodVO : " + GoodVO);
+	 * 
+	 * int res = this.goodService.deleteGood(GoodVO); log.info("res : " + res);
+	 * 
+	 * return res; }
+	 */
+
+
+	@GetMapping("/list")
+	public String list() {
+
+		return "good/list";
+	}
+
+	@GetMapping("/list2")
+	public String list2() {
+		
+		return "good/list2";
+	}
+
+}
+
+	

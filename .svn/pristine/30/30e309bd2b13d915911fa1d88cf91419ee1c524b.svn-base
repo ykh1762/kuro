@@ -1,0 +1,9 @@
+package kr.or.ddit.mapper;
+
+import kr.or.ddit.work.vo.WorkVO;
+
+public interface WorkMapper {
+
+	public int insertWork(WorkVO workVO);
+
+}

@@ -1,0 +1,65 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+    <div class="content" style="width:100px; height:100px;">
+    
+    </div>
+    
+    <div class="row">
+    <div class="col-3">
+    <jsp:include page="/WEB-INF/views/aside/messageAside.jsp" />
+    </div>
+    <div class="col-9">
+       
+        <div class="email-app">
+         
+          <div class="mail-compose bg-white overflow-auto" style="margin-left: -100px;">
+            <div class="p-4 border-bottom">
+              <div class="d-flex align-items-center">
+                <div>
+                  <h4>쪽지</h4>
+                  <span>create new message</span>
+                </div>
+             
+              </div>
+            </div>
+           
+            <div class="card-body">
+              <form>
+                <div class="mb-3">
+                  <input
+                    type="email"
+                    id="example-email"
+                    name="example-email"
+                    class="form-control"
+                    placeholder="To"
+                  />
+                </div>
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    id="example-subject"
+                    name="example-subject"
+                    class="form-control"
+                    placeholder="Subject"
+                  />
+                </div>
+                <div id="summernote"></div>
+               
+                <div class="button-group text-end">
+                  <button type="submit" class="btn btn-success mt-3">
+                    <i data-feather="send" class="feather-sm fill-white"></i>
+                    전송
+                  </button>
+                  <button type="submit" class="btn btn-dark mt-3">취소</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+       
+       
+      </div>
+ </div>     
+   
+    

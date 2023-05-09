@@ -1,0 +1,71 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+   
+    <div class="row">
+    <div class="col-3">
+    <jsp:include page="/WEB-INF/views/aside/messageAside.jsp" />
+    </div>
+    <div class="col-9">
+       
+        <div class="email-app">
+         
+          <div class="mail-compose bg-white overflow-auto" style="margin-left: -100px;">
+            <div class="p-4 border-bottom">
+            <select id="q01">
+								<option value="8">전체쪽지</option>
+								<option value="0">받은쪽지</option>
+								<option value="1">보낸쪽지</option>
+								<option value="7">보관쪽지</option>
+			</select>
+			
+			<select id="q02">
+								<option value="0">아이디</option>
+								<option value="1">이름</option>
+								<option value="2">내용</option>
+			</select>
+			
+			<input id="q03" type="text" name="" value="쪽지검색" onkeyup="if(event.keyCode == 13 &amp;&amp; $Agent().navigator().ie){nList.search();}return false;" onfocus="nList.onFocusSearchInput();" onblur="nList.onFocusSearchInput();">
+              
+              <button class="search _click(nList|search) _stopDefault"><span class="blind">검색</span></button>
+              <hr>
+              
+              <button type="button" class="btn btn-outline-danger">삭제</button>
+              
+              <div class="d-flex align-items-center">
+                <table class="table">
+  <thead>
+    <tr>
+      <th scope="col"><input type="checkbox"></th>
+      <th scope="col">보낸/받는사람</th>
+      <th scope="col">내용</th>
+      <th scope="col">날짜</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row"><input type="checkbox"></th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row"><input type="checkbox"></th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+   
+  </tbody>
+</table>
+             
+              </div>
+            </div>
+           
+          </div>
+        </div>
+       
+       
+      </div>
+ </div>     
+   
+    

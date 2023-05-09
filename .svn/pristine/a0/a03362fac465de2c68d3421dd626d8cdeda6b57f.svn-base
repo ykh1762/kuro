@@ -1,0 +1,134 @@
+package kr.or.ddit.approval.service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+
+import kr.or.ddit.approval.vo.ApFormVO;
+import kr.or.ddit.approval.vo.AplineVO;
+import kr.or.ddit.approval.vo.AppVO;
+import kr.or.ddit.approval.vo.RecVO;
+import kr.or.ddit.approval.vo.VacationFormVO;
+import kr.or.ddit.approval.vo.VacationVO;
+import kr.or.ddit.employee.vo.EmployeeVO;
+import kr.or.ddit.mapper.AppMapper;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@Service
+public class AppServiceImpl implements IAppService {
+
+	@Inject
+	private AppMapper appMapper;
+	
+	
+
+	@Override
+	public void register(RecVO rec)throws Exception{
+		appMapper.create(rec);
+	}
+
+//	@Override
+//	public ApFormVO selectForm(String text) {
+//		ApFormVO form = appMapper.selectForm(text);
+//		return form;
+//	}
+
+
+
+	@Override
+	public ApFormVO selectForm(String apfName) {
+		return appMapper.selectForm(apfName);
+	}
+
+	@Override
+	public void vacationInsert(VacationFormVO vacation) throws Exception {
+		log.debug("va >> "+vacation);
+		appMapper.approvalInsert(vacation);
+		appMapper.vacationInsert(vacation);
+		appMapper.appLine1Insert(vacation);
+		appMapper.appLine2Insert(vacation);
+		appMapper.appLine3Insert(vacation);
+		
+	}
+
+	@Override
+	public List<AppVO> getAppList() throws Exception {
+		return appMapper.getAppList();
+	}
+
+	@Override
+	public List<AppVO> getAppListByEmpNo(EmployeeVO empVO) throws Exception {
+		return appMapper.getAppListByEmpNo(empVO);
+	}
+
+	@Override
+	public List<AppVO> getAppEndListByEmpNo(EmployeeVO empVO) throws Exception {
+		return appMapper.getAppEndListByEmpNo(empVO);
+	}
+
+	@Override
+	public List<AplineVO> getAppLineListByEmpNo(EmployeeVO empVO) throws Exception {
+		
+	      // apLine 전체리스트 조회 후
+//	      for(전체apLine) {
+//	         if(사원번호 일치 && apl_result가 0) {
+//	            if(apl_num이 1 || (apl_num-1)의 apl_result가 1) {
+//	               '내가 결재할 문서' 리스트에 add()
+//	            }
+//	         }
+//	      }
+		
+		//경훈쓰
+//		List<EmployeeVO> empList = new ArrayList<EmployeeVO>();
+//		
+//		for (int i = 0; i < freeList.size(); i++) {
+//			EmployeeVO empVO = new EmployeeVO();
+//			
+//			String empNo = freeList.get(i).getEmpNo();
+//			empVO.setEmpNo(empNo);
+//			
+//			empVO = empMapper.getEmp(empVO);
+//			empList.add(empVO);
+//		}
+//		
+//		return empList;
+		
+		
+		List<AplineVO> aplineList = new ArrayList<AplineVO>();
+//		appMapper.getAppLineListByEmpNo(empVO);
+		String empNo = empVO.getEmpNo();
+		
+		
+//		for(int i=0; i< aplineList.size(); i++) {
+//			String emp = aplineList.get(i).getEmpNo();
+//			String cnt = aplineList.get(i).getAplResult();
+//			int empAplNum = aplineList.get(i).getAplNum();
+//			if(emp == empNo &&  cnt == "0") {
+//				if() {
+//					
+//				}
+//			}
+//			
+//			
+//			
+//			AplineVO aplineVO = new AplineVO();
+//			aplineVO.getAplNum  
+//			String empNo = aplineList.get(i).getEmpNo();
+//			int aplNum = aplineList.get(i).getAplNum();
+//			if( == cnt-1) {
+//				aplineList.add(e);
+//			}
+//		}
+//	      
+	      return appMapper.getAppLineListByEmpNo(empVO);
+	}
+
+}

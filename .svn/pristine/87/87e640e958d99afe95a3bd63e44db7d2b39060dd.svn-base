@@ -1,0 +1,74 @@
+package kr.or.ddit.approval.controller;
+
+import java.util.List;
+
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+
+import kr.or.ddit.approval.service.IAppService;
+import kr.or.ddit.approval.vo.ApFormVO;
+import kr.or.ddit.approval.vo.AppVO;
+import kr.or.ddit.approval.vo.RecVO;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@Controller
+@RequestMapping("/approval")
+public class ApprovalMainController {
+
+	@Inject
+	private IAppService appService;
+	
+	@GetMapping("/home")
+	public String home(Model model) {
+		
+//		List<AppVO> freeList = appService.list();
+//		model.addAttribute("List", freeList);
+		return "approval/home";
+	}
+	
+	@GetMapping("/order")
+	public String order() {
+		return "approval/order";
+	}
+
+	@GetMapping("/vacation")
+	public String vacation() {
+		return "approval/vacation";
+	}
+	
+	@RequestMapping(value="/bisOrd", method = RequestMethod.POST)
+	public String noticeDetail(String apfName, Model model) {
+		ApFormVO form = appService.selectForm(apfName);
+		model.addAttribute("apform", form);
+		log.info("체크: ", apfName);
+		return "approval/bisOrd";
+	}
+	
+	@RequestMapping(value="/employment", method = RequestMethod.GET)
+	public String employmentForm(RecVO rec, Model model) {
+		model.addAttribute("RecVO", rec);
+		return "approval/employment";
+	}
+	
+	@RequestMapping(value = "/employment", method = RequestMethod.POST)
+	public String employment(@Validated RecVO rec, BindingResult result, Model model) throws Exception {
+		appService.register(rec);
+		
+		if(rec.getRec_code().length() > 0) {
+			return "register:/approval/detail?RecDode=" + rec.getRec_code();
+		}
+		model.addAttribute("msg", "등록성공");
+		return "approval/success";
+	}
+	
+	
+}

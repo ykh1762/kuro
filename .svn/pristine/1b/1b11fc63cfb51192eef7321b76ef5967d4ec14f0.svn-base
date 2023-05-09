@@ -1,0 +1,22 @@
+package kr.or.ddit.schedule.vo;
+
+import java.util.List;
+
+import lombok.Data;
+
+@Data
+public class scheduleVO {
+	private String schNo;					// 일정번호
+	private String empNo;					// 사원번호
+	private String schTitle;				// 제목
+	private String schContent;				// 내용
+	private String schStart;				// 시작일
+	private String schEnd;					// 종료일
+	private String schLocation;				// 장소
+	private String schType;					// 일정타입 (개인/부서/회사전체)
+	private String schRead;					// 공개여부
+	private String schColor;				// 일정 색상
+	
+	private List<scheduleVO> list;			// 일정목록
+	
+}

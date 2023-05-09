@@ -1,0 +1,36 @@
+package kr.or.ddit.free.service;
+
+import java.util.List;
+
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Service;
+
+import kr.or.ddit.free.vo.FreeVO;
+import kr.or.ddit.mapper.FreeMapper;
+
+@Service
+public class FreeServiceImpl implements IFreeService{
+
+	@Inject
+	private FreeMapper freeMapper;
+	
+	@Override
+	public List<FreeVO> getFreeList() {
+		// TODO Auto-generated method stub
+		return freeMapper.getFreeList();
+	}
+
+	@Override
+	public FreeVO getFree(int freeNo) {
+		// TODO Auto-generated method stub
+		return freeMapper.getFree(freeNo);
+	}
+
+	@Override
+	public void incrementHit(int freeNo) {
+		// TODO Auto-generated method stub
+		freeMapper.incrementHit(freeNo);
+	}
+
+}

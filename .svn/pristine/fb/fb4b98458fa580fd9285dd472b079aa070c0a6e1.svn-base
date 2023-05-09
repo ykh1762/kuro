@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.ddit.mapper.DepMapper">
+
+	<select id="getDep" resultType="depVO">
+		select
+			DEP_CODE, EMP_NO, DEP_PARCODE, DEP_NAME					
+		from dep
+		where DEP_CODE = #{depCode}
+	</select>
+
+
+
+
+
+
+
+
+
+
+	<!--
+	<insert id="insertNotice" parameterType="noticeVO" useGeneratedKeys="true">
+		<selectKey keyProperty="boNo" resultType="int" order="BEFORE">
+			select seq_notice.nextval from dual
+		</selectKey>
+		insert into notice(
+			bo_no,bo_title,bo_content,bo_writer,bo_date
+		) values (
+			#{boNo},#{boTitle},#{boContent},#{boWriter},sysdate
+		)
+	</insert>	
+	
+	<update id="updateNotice" parameterType="noticeVO">
+		update notice
+		set
+			bo_title = #{boTitle},
+			bo_content = #{boContent},
+			bo_date = sysdate
+		where bo_no = #{boNo}
+	</update>
+	
+	<delete id="deleteNotice" parameterType="int">
+		delete from notice
+		where bo_no = #{boNo}
+	</delete>	
+	-->
+</mapper>
+
+
+
+
+
+

@@ -1,0 +1,20 @@
+package kr.or.ddit.mapper;
+
+import java.util.Map;
+
+import kr.or.ddit.approval.vo.ApFormVO;
+import kr.or.ddit.approval.vo.RecVO;
+import kr.or.ddit.approval.vo.VacationFormVO;
+import kr.or.ddit.approval.vo.VacationVO;
+
+public interface AppMapper {
+
+	public ApFormVO selectForm(String apfName);
+	public void create(RecVO rec) throws Exception;
+	public void vacationInsert(VacationFormVO vacation) throws Exception;
+	public void approvalInsert(VacationFormVO vacationVO);
+	public void appLine1Insert(VacationFormVO vacationVO);
+	public void appLine2Insert(VacationFormVO vacationVO);
+	public void appLine3Insert(VacationFormVO vacationVO);
+
+}

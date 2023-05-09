@@ -1,0 +1,14 @@
+package kr.or.ddit.mapper;
+
+import java.util.List;
+
+import kr.or.ddit.board.vo.BoardFavoriteVO;
+import kr.or.ddit.board.vo.BoardVO;
+
+public interface BoardMapper {
+
+	List<BoardVO> getBoaList();
+
+	List<BoardFavoriteVO> getBfList(String boaCode);
+
+}

@@ -1,0 +1,24 @@
+package kr.or.ddit.approval.vo;
+
+import java.sql.Clob;
+import java.sql.Date;
+
+import lombok.Data;
+
+@Data
+public class AppVO {
+	
+	private String appNo;
+	private String empNo;
+	private String apprefNo;
+	private String apfName;
+	private String appYear;
+	private Date appDate;
+	private Date apprepDate;
+	private String appStatus;
+	private String appUrgent;
+	private String appComment;
+	private Clob appContent;
+	private String appTitle;
+	
+}

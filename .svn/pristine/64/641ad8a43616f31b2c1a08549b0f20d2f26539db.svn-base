@@ -1,0 +1,9 @@
+package kr.or.ddit.approval.service;
+
+import kr.or.ddit.approval.vo.ApFormVO;
+
+public interface IAppService {
+
+	 public ApFormVO selectForm(String apfName);
+
+}

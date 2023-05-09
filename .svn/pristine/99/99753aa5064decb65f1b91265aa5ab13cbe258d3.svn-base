@@ -1,0 +1,23 @@
+package kr.or.ddit.employee.service;
+
+import java.util.List;
+
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Service;
+
+import kr.or.ddit.employee.vo.EmployeeVO;
+import kr.or.ddit.mapper.EmployeeMapper;
+
+@Service
+public class EmpServiceImpl implements IEmpService {
+
+	@Inject
+	private EmployeeMapper empMapper;
+	
+	@Override
+	public List<EmployeeVO> list() {
+		return empMapper.list();
+	}
+
+}

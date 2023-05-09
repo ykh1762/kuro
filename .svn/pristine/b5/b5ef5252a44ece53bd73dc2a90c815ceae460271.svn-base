@@ -1,0 +1,43 @@
+package kr.or.ddit.main.controller;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import kr.or.ddit.employee.vo.EmployeeVO;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@Controller
+@RequestMapping("/conn")
+public class LoginController {
+
+	@GetMapping("/login")
+	public String login() {
+		
+		return "main/login";
+	}
+	
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String login(HttpServletRequest req, EmployeeVO empVO, Model model) {
+		
+		log.info("id,pw >> " + empVO.getEmpId()+" "+empVO.getEmpPw());
+		
+		// 임시 로그인 체크
+		if (empVO.getEmpId().equals("k") && empVO.getEmpPw().equals("1")) {
+			
+			HttpSession session = req.getSession();
+
+			session.setAttribute("SessionInfo", empVO);			
+			return "main/home";
+		}
+		
+		model.addAttribute("msg", "로그인 정보를 확인해주세요.");
+		return "conn/login";
+	}
+}

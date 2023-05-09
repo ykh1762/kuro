@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.ddit.mapper.MessageMapper">
+
+	<select id="getMessageList" resultType="messageVO">
+		select
+			MES_CODE, EMP_NO, MES_CONTENT, MES_DATE			
+		from message
+	</select>
+
+	<select id="getMessageListByEmpNo" resultType="messageVO">
+		select
+			MES_CODE, EMP_NO, MES_CONTENT, MES_DATE			
+		from message
+		
+	</select>
+	
+	<select id="getMessage" resultType="messageVO">
+		select
+			MES_CODE, EMP_NO, MES_CONTENT, MES_DATE				
+		from message
+		where MES_CODE = #{mesCode}
+	</select>
+	
+	
+	<insert id="write" parameterType="messageVO">
+		<selectKey keyProperty="mesCode" resultType="string" order="BEFORE">
+			SELECT 'MES'||MESSAGE_SEQ.NEXTVAL FROM DUAL
+		</selectKey>	
+		INSERT INTO message (
+			MES_CODE, EMP_NO, MES_CONTENT, MES_DATE, MES_SAVE, MES_DELETE
+		) VALUES (
+			#{mesCode}, #{empNo}, #{mesContent}, SYSDATE, 'N', 'N'
+		)
+	</insert>
+	
+	
+
+</mapper>
+	
+
+
+

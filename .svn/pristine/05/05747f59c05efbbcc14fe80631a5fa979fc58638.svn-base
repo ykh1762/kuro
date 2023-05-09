@@ -1,0 +1,60 @@
+package kr.or.ddit.common;
+
+import java.util.Date;
+
+import javax.inject.Inject;
+
+import kr.or.ddit.common.vo.ComCodeVO;
+import kr.or.ddit.mapper.ComCodeMapper;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+public class Utils {
+
+	@Inject
+	private static ComCodeMapper ccMapper;
+	
+	// 지난 날짜 계산(방금, 1시간 전, 1일 전 ...)
+	public static ComCodeVO calDate(Date date) {
+		
+		
+		// 3_600_000로 나누면 시간 차이 나옴. 
+		Date now = new Date();
+		log.info("now >> " + now.getTime());
+		log.info("시간 차 >> " + (now.getTime() - date.getTime()) / 3_600_000d);
+		
+		double diff = (now.getTime() - date.getTime()) / 3_600_000d;
+		
+		ComCodeVO ccVO = new ComCodeVO();
+		ccVO.setComGroup("timedisp");
+		
+		if (diff < 1) {
+			
+			ccVO.setComCode("1"); // 방금
+			return ccMapper.getCc(ccVO); 
+		} 
+		if (diff < 2) {
+			
+			ccVO.setComCode("2"); // 1시간 전
+			return ccMapper.getCc(ccVO); 
+		} 
+		if (diff < 3) {
+			
+			ccVO.setComCode("3"); // 2시간 전
+			return ccMapper.getCc(ccVO); 
+		} 
+		if (diff < 7) {
+			
+			ccVO.setComCode("4"); // 6시간 전
+			return ccMapper.getCc(ccVO); 
+		} 
+		if (diff < 36) { // 정확하게 계산하려면 now에서 시간 구해서 24 + x 로.
+			
+			ccVO.setComCode("5"); // 어제
+			return ccMapper.getCc(ccVO); 
+		} 
+		
+		ccVO.setComCode("6"); // 2일 전
+		return ccMapper.getCc(ccVO); 
+	}
+}

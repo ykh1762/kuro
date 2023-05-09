@@ -1,0 +1,95 @@
+package kr.or.ddit.schedule.controller;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.inject.Inject;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+
+import kr.or.ddit.schedule.service.IScheduleService;
+import kr.or.ddit.schedule.vo.scheduleVO;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@Controller
+@RequestMapping("/sch")
+public class SchController {
+
+	@Inject
+	private IScheduleService service;
+	
+	@GetMapping("/home")
+	public String schedule() {
+		return "schedule/home";
+	}
+	
+	@ResponseBody
+	@PostMapping("/home")
+	public JSONArray schList() {
+		List<scheduleVO> list = service.list();
+		JSONObject jsonObj = new JSONObject();
+		JSONArray jsonArr = new JSONArray();
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		for(int i=0; i < list.size(); i++) {
+			map.put("schCode", list.get(i).getSchCode());
+			map.put("empNo", list.get(i).getEmpNo());
+			map.put("title", list.get(i).getSchTitle());
+			map.put("content", list.get(i).getSchContent());
+			map.put("start", list.get(i).getSchStart());
+			map.put("end", list.get(i).getSchEnd());
+			map.put("schLocation", list.get(i).getSchLocation());
+			map.put("schType", list.get(i).getSchType());
+			map.put("schRead", list.get(i).getSchRead());
+			map.put("schColor", list.get(i).getSchColor());
+			jsonObj = new JSONObject(map);
+			jsonArr.add(jsonObj);
+		}
+		System.out.println("jsonArr : {}"+jsonArr); 
+		return jsonArr;
+	}
+	
+	@ResponseBody
+	@PostMapping("/register")
+	public String register(@Validated scheduleVO schVO, Model model) throws Exception {
+		log.debug("register");
+		
+		service.register(schVO);
+		
+		if(schVO.getSchCode() != null ) {
+			return "redirect:/sch/home";
+		}
+		model.addAttribute("msg", "등록 성공");
+		return "schedule/home";
+	}
+	
+	@ResponseBody
+	@PostMapping("/update")
+	public String update(scheduleVO schVO, Model model) throws Exception {
+		log.debug("update");
+		service.update(schVO);
+		model.addAttribute("schCode", schVO.getSchCode());
+		return "schedule/home";
+	}
+	
+	@ResponseBody
+	@PostMapping("/remove")
+	public String remove(String schCode, Model model) throws Exception{
+		log.debug("remove");
+		service.remove(schCode);
+		model.addAttribute("msg", "삭제 성공!!");
+		return "schedule/home";
+	}
+	
+}

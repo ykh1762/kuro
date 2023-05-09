@@ -1,0 +1,16 @@
+package kr.or.ddit.approval.vo;
+
+import lombok.Data;
+
+@Data
+public class VacationVO {
+
+	private String vac_code;
+	private String app_code;
+	private String vac_start;
+	private String vac_end;
+	private String vac_type;
+	private String vac_content;
+	private String vac_tel;
+	private String vac_day;
+}

@@ -1,0 +1,11 @@
+package kr.or.ddit.mapper;
+
+import java.util.List;
+
+import kr.or.ddit.free.vo.FreeVO;
+
+public interface FreeMapper {
+
+	public List<FreeVO> getFreeList();
+
+}

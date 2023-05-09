@@ -1,0 +1,104 @@
+package kr.or.ddit.board.controller;
+
+import java.util.List;
+
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import kr.or.ddit.attfile.vo.AttFileVO;
+import kr.or.ddit.board.service.IBoardService;
+import kr.or.ddit.board.vo.BoardVO;
+import kr.or.ddit.board.vo.PostVO;
+import kr.or.ddit.dep.vo.DepVO;
+import kr.or.ddit.employee.vo.EmployeeVO;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@Controller
+@RequestMapping("/board")
+public class BoardController {
+	
+	@Inject
+	private IBoardService boardService;
+
+	@GetMapping("/home")
+	public String home(Model model, HttpServletRequest req) {
+		
+		HttpSession session = req.getSession();
+		
+		if (session.getAttribute("SessionInfo") == null) {  
+			// SessionInfo가 없으면 로그인 페이지로 이동
+			return "conn/login";
+		}
+		
+		List<BoardVO> boaList = boardService.getBoaList();
+		model.addAttribute("boaList", boaList);
+		
+		// 게시판 이름 리스트
+		List<DepVO> depList = boardService.getDepByBoaList(boaList);
+		model.addAttribute("depList", depList);
+		
+		// 게시판 아이콘 리스트
+		List<AttFileVO> afList = boardService.getAfByBoaList(boaList);
+		model.addAttribute("afList", afList);
+		
+		// 게시판 사원 리스트.
+		List<List<EmployeeVO>> depEmpList = boardService.getDepEmpByBoaList(boaList);
+		model.addAttribute("depEmpList", depEmpList);
+//		for (List<EmployeeVO> list : depEmpList) {
+//			log.info("depEmp sizes >> " + list.size());
+//		}
+		
+		// 게시판 사원 프로필 리스트.
+		List<List<AttFileVO>> boaAfList = boardService.getBoaAfByBoaList(boaList);
+		model.addAttribute("boaAfList", boaAfList);
+		
+		
+		return "board/home";
+	}	
+	
+	@GetMapping("/list")
+	public String list(String boaCode, Model model) {
+		
+		BoardVO boaVO = boardService.getBoa(boaCode);
+		model.addAttribute("boa", boaVO);
+		
+		
+		return "board/list";
+	}
+	
+	// 임시 페이지
+	@GetMapping("/list2")
+	public String list2(String flag, Model model) {
+		
+		if(flag.equals("T")) {
+			for (int i = 0; i < 40; i++) {
+				PostVO postVO = new PostVO();
+				// POST_CODE, BOA_CODE, EMP_NO, POST_TITLE, POST_DATE, POST_HIT, POST_ESS, POST_CONTENT
+				postVO.setBoaCode("BOA6");
+				
+//		        System.out.println("0.0 ~ 1.0 사이의 난수 1개 발생 : " + Math.random());
+//		        System.out.println("0 ~ 100 사이의 난수 1개 발생 : " + (int)(Math.random()*100));
+			}
+		}
+		
+		return "board/list2";
+	}
+	
+	
+	
+	
+	
+	
+	
+}
+
+
+
+

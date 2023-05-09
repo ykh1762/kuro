@@ -1,0 +1,19 @@
+package kr.or.ddit.free.vo;
+
+import java.util.Date;
+
+import lombok.Data;
+
+@Data
+public class FreeVO {
+
+	private String freeNo;
+	private String empNo;
+	private String timNo;
+	private String goodNo;
+	private String afNo;
+	private String freeTitle;
+	private String freeContent;
+	private Date freeDate;
+	private int freeHit;
+}

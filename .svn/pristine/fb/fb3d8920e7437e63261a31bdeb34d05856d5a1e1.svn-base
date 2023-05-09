@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.ddit.mapper.EmployeeMapper">
+
+	<select id="getEmp" resultType="empVO">
+		select
+			EMP_NO, CO_CODE, DEP_CODE, EMP_POS, EMP_NAME, EMP_REG, EMP_POSTCODE, EMP_ADDR, 
+			EMP_ADDR2, EMP_DATE, EMP_EMAIL, EMP_TEL, EMP_PW, EMP_MSG, EMP_PV, EMP_RDATE			
+		from employee
+		where
+			EMP_NO = #{empNo}
+	</select>
+
+	<select id="loginCheck" resultType="empVO">
+		select
+			EMP_NO, CO_CODE, DEP_CODE, EMP_POS, EMP_NAME, EMP_REG, EMP_POSTCODE, EMP_ADDR, 
+			EMP_ADDR2, EMP_DATE, EMP_EMAIL, EMP_TEL, EMP_PW, EMP_MSG, EMP_PV, EMP_RDATE					
+		from employee
+		where
+			EMP_NO = #{empNo}
+		and
+			EMP_PW = #{empPw}
+	</select>
+
+	<select id="list" resultType="empVO">
+	<!-- 주민등록번호, 비밀번호 제외한 모든 정보 조회 (조직도에서 사용)-->
+	select 
+	    a.EMP_NO, a.CO_CODE, a.DEP_CODE, a.EMP_POS, a.EMP_NAME, a.EMP_POSTCODE, a.EMP_ADDR,
+	    a.EMP_ADDR2, a.EMP_DATE, a.EMP_EMAIL, a.EMP_TEL, a.EMP_MSG, a.EMP_PV, a.EMP_RDATE,
+	    b.DEP_NAME, b.dep_parcode
+	from employee a, dep b
+	where a.dep_code = b.dep_code
+	</select>
+
+	<select id="selectMember" parameterType="string" resultType="empVO">
+		select
+			EMP_NO, CO_CODE, DEP_CODE, EMP_POS, EMP_NAME, EMP_REG, EMP_POSTCODE, EMP_ADDR, 
+			EMP_ADDR2, EMP_DATE, EMP_EMAIL, EMP_TEL, EMP_PW, EMP_MSG, EMP_PV, EMP_RDATE			
+		from employee
+		where
+			EMP_NO = #{empNo}
+	</select>
+
+</mapper>
+
+
+
+

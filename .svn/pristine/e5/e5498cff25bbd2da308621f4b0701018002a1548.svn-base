@@ -1,0 +1,9 @@
+package kr.or.ddit.approval.vo;
+
+import java.sql.Clob;
+
+public class ApFormVO {
+
+	private String apfName;
+	private Clob apfContent;
+}

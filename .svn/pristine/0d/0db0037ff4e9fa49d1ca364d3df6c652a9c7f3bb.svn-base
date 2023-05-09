@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.ddit.mapper.AttfileMapper">
+
+	<select id="getAf" resultType="aFVO">
+		select
+			AF_CODE, AF_TYPE, AF_TCODE, AF_USE, AF_DATE, AF_NAME, AF_SAVE, AF_SIZE, AF_PATH, 
+			AF_EXT
+		from attfile
+		where
+			AF_TCODE = #{afTcode}	
+		AND
+			AF_TYPE = #{afType}
+	</select>
+	
+
+
+
+
+</mapper>
+
+
+
+

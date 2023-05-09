@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.ddit.mapper.ContactMapper">
+
+	<select id="getContactList" resultType="contactVO">
+		select
+			CON_CODE, AB_CODE, CON_NAME, CON_COMPANY, CON_DEP, CON_POS, CON_EMAIL, CON_TEL, CON_ADDR, CON_MEMO, CON_DATE, CON_FAV			
+		from contact
+	</select>
+	
+	<insert id="register" parameterType="contactVO">
+		insert into contact(
+			CON_CODE, AB_CODE, CON_NAME, CON_COMPANY, CON_DEP, CON_POS, CON_EMAIL, CON_TEL, CON_ADDR, CON_MEMO, CON_DATE, CON_FAV
+		) values (
+			('CONTACT'||contact_seq.nextval), #{abCode}, #{conName}, #{conCompany}, #{conDep}, #{conPos}, #{conEmail}, #{conTel}, #{conAddr}, #{conMemo}, SYSDATE, 'N'
+		)
+	
+	</insert>
+
+</mapper>
+

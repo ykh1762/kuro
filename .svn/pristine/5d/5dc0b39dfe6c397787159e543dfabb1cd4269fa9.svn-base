@@ -1,0 +1,46 @@
+package kr.or.ddit.work.controller;
+
+import java.time.LocalDate;
+import java.util.Calendar;
+
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import kr.or.ddit.work.service.IWorkService;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@Controller
+@RequestMapping("/work")
+public class WorkController {
+
+	@Inject
+	private IWorkService workService;
+	
+	@GetMapping("/home")
+	public String home(Model model) {
+		
+		// 마지막 날짜 구하기
+		Calendar cal = Calendar.getInstance();
+		int year = cal.get(Calendar.YEAR);
+		int month = cal.get(Calendar.MONTH)+1;
+		
+		LocalDate lastDayDate = LocalDate.of(year, month, 1).
+				plusDays(LocalDate.of(year, month, 1).lengthOfMonth()-1);
+		
+		String lastDayFull = lastDayDate.toString();
+		int lastDay = Integer.parseInt(lastDayFull.substring(lastDayFull.length()-2,lastDayFull.length()));
+		
+		int totalWeek = (int) Math.ceil(lastDay / 7.0);
+		int restDayNum = lastDay % 7;
+		
+		model.addAttribute("totalWeek", totalWeek);
+		model.addAttribute("restDayNum", restDayNum);
+		return "work/home";
+	}
+	
+}

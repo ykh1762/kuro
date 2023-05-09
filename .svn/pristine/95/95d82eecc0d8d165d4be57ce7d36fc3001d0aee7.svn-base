@@ -1,0 +1,17 @@
+package kr.or.ddit.approval.vo;
+
+import java.sql.Date;
+import lombok.Data;
+
+@Data
+public class AplineVO {
+
+	private int apl_num;
+	private String app_code;
+	private String emp_no;
+	private String apl_result;
+	private Date apl_date;
+	private String apl_comment;
+	private String apl_pos;
+	private String apl_fav;
+}

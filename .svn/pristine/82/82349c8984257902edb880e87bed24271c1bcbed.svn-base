@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.ddit.mapper.FreeMapper">
+
+	<select id="getFreeList" resultType="freeVO">
+		select
+			FREE_CODE, EMP_NO, FREE_TITLE, FREE_CONTENT, FREE_DATE, FREE_HIT			
+		from free
+	</select>
+	
+	<select id="getFree" resultType="freeVO">
+		select
+			FREE_CODE, EMP_NO, FREE_TITLE, FREE_CONTENT, FREE_DATE, FREE_HIT					
+		from free
+		where FREE_CODE = #{freeCode}
+	</select>
+
+	<update id="incrementHit">
+		update free
+		set
+			FREE_HIT = FREE_HIT + 1
+		where FREE_CODE = #{freeCode}		
+	</update>
+
+
+
+
+</mapper>
+
+
+
+

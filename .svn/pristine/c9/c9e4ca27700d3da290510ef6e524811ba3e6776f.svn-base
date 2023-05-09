@@ -1,0 +1,84 @@
+package kr.or.ddit.free.controller;
+
+import java.util.List;
+
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import kr.or.ddit.attfile.vo.AttFileVO;
+import kr.or.ddit.common.Utils;
+import kr.or.ddit.employee.vo.EmployeeVO;
+import kr.or.ddit.free.service.IFreeService;
+import kr.or.ddit.free.vo.FreeVO;
+import kr.or.ddit.good.vo.GoodVO;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@Controller
+@RequestMapping("/free")
+public class FreeController {
+
+	@Inject
+	private IFreeService freeService;
+	
+	@GetMapping("/home")
+	public String home(Model model) {
+		
+		List<FreeVO> freeList = freeService.getFreeList();
+		model.addAttribute("freeList", freeList);
+		
+		// 각 게시글의 작성자 List<EmployeeVO> 구하기
+		List<EmployeeVO> empList = freeService.getEmpByFreeList(freeList);
+		model.addAttribute("empList", empList);
+		
+		// 좋아요 수 구하기.
+		List<Integer> goodCountList = freeService.getGoodByFreeList(freeList);
+		model.addAttribute("goodCountList", goodCountList);
+		
+		return "free/home";
+	}
+	
+	@GetMapping("/detail")
+	public String detail(String freeNo, Model model) {
+		
+		// 조회수 증가 - 먼저 하고 getFree()
+		freeService.incrementHit(freeNo);
+		FreeVO freeVO = freeService.getFree(freeNo);
+		
+		model.addAttribute("freeVO", freeVO);
+		
+		// 작성자 empVO 구하기
+		EmployeeVO empVO = freeService.getEmpByFree(freeVO);
+		model.addAttribute("empVO", empVO);
+		
+		// emp의 profile 구하기
+		AttFileVO afVO = freeService.getAf(empVO.getAfNo());
+		model.addAttribute("afVO", afVO);
+		
+		// 좋아요 리스트 구하기.
+		List<GoodVO> goodList;
+		
+		if (freeVO.getGoodNo() != null) {
+			goodList = freeService.getGood(freeVO.getGoodNo());
+			model.addAttribute("goodList", goodList);
+			
+			// 좋아요의 사원 리스트 구하기
+			List<EmployeeVO> empList = freeService.getEmpByGoodList(goodList);
+			model.addAttribute("empList", empList);
+			
+			// 좋아요 지난시간 가져오기
+			List<String> timeList = freeService.getTimeList(goodList);
+			
+		}else {
+			model.addAttribute("goodList", null);
+//			model.addAttribute("empList", null);
+		}
+		
+		
+		return "free/detail";
+	}
+}

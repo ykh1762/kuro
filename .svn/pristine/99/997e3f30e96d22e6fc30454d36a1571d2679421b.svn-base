@@ -1,0 +1,9 @@
+package kr.or.ddit.mapper;
+
+import kr.or.ddit.dep.vo.DepVO;
+
+public interface DepMapper {
+
+	DepVO getDep(String depCode);
+	
+}

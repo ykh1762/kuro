@@ -1,0 +1,37 @@
+package kr.or.ddit.approval.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/approval")
+public class ApprovalMainController {
+
+	@GetMapping("/home")
+	public String main() {
+		return "approval/home";
+	}
+	
+	@GetMapping("/order")
+	public String order() {
+		return "approval/order";
+	}
+
+	@GetMapping("/vacation")
+	public String vacation() {
+		return "approval/vacation";
+	}
+	
+	@GetMapping("/businessTrip")
+	public String businessTrip() {
+		return "approval/businessTrip";
+	}
+	
+	@GetMapping("/employment")
+	public String employment() {
+		return "approval/employment";
+	}
+	
+	
+}

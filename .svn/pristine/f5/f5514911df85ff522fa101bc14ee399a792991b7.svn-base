@@ -1,0 +1,12 @@
+package kr.or.ddit.approval.service;
+
+import kr.or.ddit.approval.vo.ApFormVO;
+import kr.or.ddit.approval.vo.RecVO;
+
+public interface IAppService {
+
+	 public ApFormVO selectForm(String apfName);
+
+	public void register(RecVO rec) throws Exception;	//채용품의서 등록
+
+}

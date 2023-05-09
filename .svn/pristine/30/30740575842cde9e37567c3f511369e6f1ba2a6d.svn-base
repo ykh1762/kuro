@@ -1,0 +1,11 @@
+package kr.or.ddit.mapper;
+
+import kr.or.ddit.attfile.vo.AttFileVO;
+
+public interface AttfileMapper {
+
+	public AttFileVO getAf(String afTcode);
+
+	public AttFileVO getAfByAfTcode(String empNo);
+
+}

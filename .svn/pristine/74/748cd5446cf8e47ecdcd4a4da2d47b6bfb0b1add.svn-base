@@ -1,0 +1,74 @@
+package kr.or.ddit.schedule.service;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.apache.commons.collections.map.HashedMap;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
+import kr.or.ddit.mapper.AccMapper;
+import kr.or.ddit.mapper.SchEmpMapper;
+import kr.or.ddit.mapper.ScheduleMapper;
+import kr.or.ddit.schedule.vo.SchEmpVO;
+import kr.or.ddit.schedule.vo.ScheduleVO;
+
+
+@Service
+public class ScheduleImpl implements IScheduleService {
+
+	@Inject
+	private ScheduleMapper schMapper;
+	
+	@Inject
+	private SchEmpMapper schEmpMapper;
+	
+	@Override
+	public List<ScheduleVO> list() {
+		return schMapper.list();
+	}
+
+	@Override
+	@Transactional   // 2개의 insert가 세트로 모두 성공해야 함!~~ 1개라도 실패하면 롤백
+	public int register(ScheduleVO schVO) throws Exception {
+		if(schVO.getSchStart().length() == 10) {
+			schVO.setSchStart(schVO.getSchStart().split("T")[0]);
+		}
+		if(schVO.getSchEnd().length() == 10) {
+			schVO.setSchEnd(schVO.getSchEnd().split("T")[0]);
+		}
+		int result =  schMapper.register(schVO);
+		
+		System.out.println("==============================================");
+		System.out.println("[register start]" + schVO.getSchStart());
+		System.out.println("[register schCode]" + schVO.getSchCode());
+		System.out.println("[register schEmpNo]" + schVO.getSchEmpNo());
+
+		String[] empNo = schVO.getSchEmpNo().split("/");
+		for (int i = 0; i < empNo.length; i++) {
+			SchEmpVO schempVO = new SchEmpVO();
+			schempVO.setSchCode(schVO.getSchCode());
+			schempVO.setEmpNo(empNo[i]);
+			schEmpMapper.register(schempVO);
+		}
+		
+		return result;
+	}
+
+	@Override
+	public int remove(String schCode) throws Exception {
+		return schMapper.remove(schCode);
+	}
+
+	@Override
+	public int update(ScheduleVO schVO) throws Exception {
+		return schMapper.update(schVO);
+	}
+
+
+}

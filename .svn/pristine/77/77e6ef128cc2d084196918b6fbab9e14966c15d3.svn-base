@@ -1,0 +1,18 @@
+package kr.or.ddit.mail.vo;
+
+import java.util.Date;
+
+import lombok.Data;
+
+@Data
+public class MailVO {
+	private String mailCode;
+	private String empNo;
+	private String mailTitle;
+	private String mailContent;
+	private char mailImp;
+	private char mailSave;
+	private Date mailDate;
+	private char mailSend;
+	private String empName;
+}

@@ -1,0 +1,16 @@
+package kr.or.ddit.schedule.vo;
+
+import lombok.Data;
+
+@Data
+public class MroomVO {
+	
+	private String mrCode;			// 회의실 코드
+	private String assCode;			// 자산 코드
+	private String mrName;			// 회의실 이름
+	private int mrNum;				// 회의실 호수
+	private int mrPerson;			// 수용인원
+	private char mrUse;				// 사용여부
+	
+	private String schCode;			// 일정코드
+}

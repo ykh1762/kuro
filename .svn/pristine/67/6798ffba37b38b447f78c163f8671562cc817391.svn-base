@@ -1,0 +1,702 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!-- <script src="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.min.js"></script> -->
+<!-- [CDN 설정 실시] -->
+<!-- <link rel="stylesheet" href="https://amsul.ca/pickadate.js/css/main.css"> -->
+<link rel="stylesheet" href="https://amsul.ca/pickadate.js/vendor/pickadate/lib/themes/default.css" id="theme_base">
+<link rel="stylesheet" href="https://amsul.ca/pickadate.js/vendor/pickadate/lib/themes/default.date.css" id="theme_date">
+<link rel="stylesheet" href="https://amsul.ca/pickadate.js/vendor/pickadate/lib/themes/default.time.css" id="theme_time">
+
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+
+<script src="https://amsul.ca/pickadate.js/vendor/pickadate/lib/picker.js"></script>
+<script src="https://amsul.ca/pickadate.js/vendor/pickadate/lib/picker.date.js"></script>
+<script src="https://amsul.ca/pickadate.js/vendor/pickadate/lib/picker.time.js"></script>
+<script type="text/javascript">
+$(function(){
+	$.extend($.fn.pickadate.defaults, {
+	      monthsFull: [
+	        "1월",
+	        "2월",
+	        "3월",
+	        "4월",
+	        "5월",
+	        "6월",
+	        "7월",
+	        "8월",
+	        "9월",
+	        "10월",
+	        "11월",
+	        "12월",
+	      ],
+	      monthsShort: [
+	        "1월",
+	        "2월",
+	        "3월",
+	        "4월",
+	        "5월",
+	        "6월",
+	        "7월",
+	        "8월",
+	        "9월",
+	        "10월",
+	        "11월",
+	        "12월",
+	      ],
+	      weekdaysFull: ["일", "월", "화", "수", "목", "금", "토"],
+	      weekdaysShort: ["일", "월", "화", "수", "목", "금", "토"],
+	      selectYears: 10,
+	      selectMonths: true,
+	      showMonthsShort: false,
+	      showWeekdaysFull: false,
+	      close: "닫기",
+	      clear: false,
+	      today: "오늘",
+	      format: "yyyy-mm-dd",
+	      formatSubmit: "yyyy-mm-dd",
+// 	      max: true, // 이 옵션이 ture면 오늘까지밖에 날짜 선택을 못한다
+	      closeOnSelect: true,
+	      onSet: function (e) {
+	        if (e.select) {
+	          this.close();
+	        }
+	      },
+	    });
+	
+	
+	window.onload = function(){
+		testMain();
+	}
+	
+	function testMain(){
+		let nowDate = new Date().toISOString().substring(0, 10);
+		$(".pickadate").attr("value", nowDate );
+		
+		$( '.datepicker' ).pickadate({
+		    disablePicker: true
+		})
+		// [타입 지정 및 초기화 실시]
+        $('.pickadate').pickadate();
+//         $('.pickatime').pickatime();	
+	} 
+	
+	$("#timeSelect").on("change", function(){
+// 		console.log("change...!");
+		var rmTime = $("#rmTime").text();
+		var rmTimeSplit = rmTime.trim().split("-");
+		var rmTimeSplitFirst = rmTimeSplit[0].split(":");
+		var rmTimeSplitSecond = rmTimeSplit[1].split(":");
+		var firstTime = parseInt(rmTimeSplitFirst);
+		var secondTime = parseInt(rmTimeSplitSecond);
+		
+		var times = "";
+		var firstTimes = firstTime + parseInt($(this).val());
+// 		var secondTimes = secondTime + parseInt($(this).val());
+		
+		$("#rmTime").text(rmTimeSplit[0] + " - " + firstTimes + ":00");
+	});
+});
+
+	const f_modal = function(e){
+// 		console.log('this',e);
+		let nodes = [...e.parentElement.children];
+		let index = nodes.indexOf(e);
+		
+		//부모3자식0자식1자식index
+		let roomName = e.parentElement.parentElement.parentElement.children[0].children[1].children[index].innerHTML;
+		let resTime = e.parentElement.children[0].innerHTML;
+		
+		alert('chk : '+ index + ", " + roomName + ", 시간 : " + resTime);
+		document.getElementById('rmName').innerHTML = roomName;
+		document.getElementById('rmTime').innerHTML = resTime;
+		
+		let resTimeSplit = resTime.trim().split("-");
+		let resTimeFirst = resTimeSplit[0].split(":");
+		if(parseInt(resTimeFirst) == 21){
+			document.querySelector("#timeSelect").style.display = "none";
+		}else{
+			document.querySelector("#timeSelect").style.display = "block";
+		}
+		
+		$(".bckdrop").attr("style", "display:block; opacity:0.5;");
+		$("#resModal").attr("style", "display:block; z-index:100; position:fixed; top:30%; left:40%; width:420px");
+	}
+	
+	const closeBtn = function(){
+		$(".bckdrop").attr("style", "display:none");
+		$("#resModal").attr("style", "display:none");
+	}
+
+	const addBtn = function(e){
+		
+		let resName = $('.resModalTable').find('div:eq(0)').text();							// 회의실 이름 (schLocation)
+		let resDate = $("input[name='_submit']").val()										// 예약 일시
+		let resStart = $('.resModalTable').find('div:eq(1)').text().split("-")[0].trim()	// 예약 시간_시작일시 (schStart)
+		let resEnd = $('.resModalTable').find('div:eq(1)').text().split("-")[1].trim()		// 예약시간_종료일시(schEnd)
+		let selectTime = $('select[name=resTime]').val();									// 이용시간
+		let resContent = $('#schContent').val();												// 이용 목적 (schContent)
+		
+		
+		console.log("selectTime : " + selectTime);
+		console.log("resName : ", resName + ", resDate : " + resDate + ", resStart : " + resStart + ", resEnd : " + resEnd + ", resContent : " + resContent);
+	}
+	
+</script>
+<style>
+tr{
+	height: 60px;
+}
+th{
+	width: 120px;
+}
+
+.modalTr .modalTd{
+/* 	border: 1px solid #eee; */
+	padding: 5px;
+}
+
+#schContent{
+	border: 1px solid #eee;
+	border-radius: 5px;
+	width: 300px;
+	height: 50px;
+}
+
+</style>
+<!-- 만약에 예약된 상태면 class이름에 reservated를 추가 -->
+<div class="page-breadcrumb">
+	<h4 class="page title">회의실 예약</h4>
+</div>
+<div class="container-fluid" style="text-align:center;">
+	<div>
+		<div class="input-group" style="height:50px; margin:20px;">
+			<input type="date" value="" id="pickadate" class="pickadate" style="height: 50px; width: 96%; text-align: center; font-size: xx-large; margin: auto;"/>
+		</div>
+	</div>
+	<div class="row" style="background-color: white; margin:10px; height: 1000px;">
+		<div class="col-md-5" style="margin: 25px 10px;">
+			<table class="table table-sm table-bordered reserv-table">
+				<thead>
+					<tr style="height: 30px;">
+						<th style="width: 5rem;">시간대</th>
+						<th colspan="5">본사 1층 회의실</th>
+					</tr>
+					<tr style="height: 50px;">
+						<th>구분</th>
+						<td style=" background-color: #d2e0f5;">101호 회의실</td>
+						<td style=" background-color: #d2e0f5;">102호 회의실</td>
+						<td style=" background-color: #d2e0f5;">103호 회의실</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th>09:00 - 10:00</th>
+						<td class="room" id="room_101_9" onclick="f_modal(this)">
+							<div class="reserv-text" id="roomClick" >
+							</div>
+						</td>
+						<td class="room" id="room_102_9" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class="reservated 21" id="room_315_9" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>10:00 - 11:00</th>
+						<td class="disable 21" id="room_313_10" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class="disable 21" id="room_314_10" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class="reservated 21" id="room_315_10" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>11:00 - 12:00</th>
+						<td class=" 21" id="room_313_11" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class=" 21" id="room_314_11" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class="reservated 21" id="room_315_11" onclick="f_modal(this)">
+							<div class="reserv-text" >
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>12:00 - 13:00</th>
+						<td class=" 21" id="room_313_12" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class=" 21" id="room_314_12" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class="reservated 21" id="room_315_12" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>13:00 - 14:00</th>
+						<td class=" 21" id="room_313_13" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class=" 21" id="room_314_13" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class=" 21" id="room_315_13" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>14:00 - 15:00</th>
+						<td class=" 21" id="room_313_14" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class=" 21" id="room_314_14" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class="reservated 21" id="room_315_14" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>15:00 - 16:00</th>
+						<td class=" 21" id="room_313_15" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class=" 21" id="room_314_15" onclick="f_modal(this)">
+							<div class="reserv-text" >
+							</div>
+						</td>
+						<td class="reservated 21" id="room_315_15" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>16:00 - 17:00</th>
+						<td class="reservated 21" id="room_313_16" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class=" 21" id="room_314_16" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class="reservated 21" id="room_315_16" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>17:00 - 18:00</th>
+						<td class=" 21" id="room_313_17" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class=" 21" id="room_314_17" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class="reservated 21" id="room_315_17" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>18:00 - 19:00</th>
+						<td class=" 21" id="room_313_18" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class=" 21" id="room_314_18" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class=" 21" id="room_315_18" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>19:00 - 20:00</th>
+						<td class="reservated 21" id="room_313_19" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class="reservated 21" id="room_314_19" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class="reservated 21" id="room_315_19" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>20:00 - 21:00</th>
+						<td class="reservated 21" id="room_314_19" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class="reservated 21" id="room_314_20" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class="reservated 21" id="room_315_20" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>21:00 - 22:00</th>
+						<td class=" 21" id="room_313_21" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class=" 21" id="room_314_21" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class=" 21" id="room_315_21" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="col-md-6" style="margin: 25px 10px;">
+			<table class="table table-sm table-bordered reserv-table">
+				<thead>
+					<tr style="height: 30px;">
+						<th style="width: 5rem;">시간대</th>
+						<th colspan="4">본사 3층 회의실</th>
+					</tr>
+					<tr style="height: 50px;">
+						<th>구분</th> 
+						<td style=" background-color: #d2e0f5;">301호 회의실</td>
+						<td style=" background-color: #d2e0f5;">302호 회의실</td>
+						<td style=" background-color: #d2e0f5;">303호 회의실</td>
+						<td style=" background-color: #d2e0f5;">304호 회의실</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th>09:00 - 10:00</th>
+						<td class="21" id="room_411_9" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class="21" id="room_412_9" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class="21" id="room_413_9" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class="21" id="room_414_9" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>10:00 - 11:00</th>
+						<td class="21" id="room_411_10" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class="21" id="room_412_10" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class="21" id="room_413_10" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class="21" id="room_414_10" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>11:00 - 12:00</th>
+						<td class="21" id="room_411_11" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class="21" id="room_412_11" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class="21" id="room_413_11" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class="21" id="room_414_11" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>12:00 - 13:00</th>
+						<td class=" 21" id="room_411_12" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class=" 21" id="room_412_12" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class=" 21" id="room_413_12" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class=" 21" id="room_414_12" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>13:00 - 14:00</th>
+						<td class=" 21" id="room_411_13" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class=" 21" id="room_412_13" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class="reservated 21" id="room_413_13" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class="reservated 21" id="room_414_13" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>14:00 - 15:00</th>
+						<td class=" 21" id="room_411_14" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class="reservated 21" id="room_412_14" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class="reservated 21" id="room_413_14" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class="reservated 21" id="room_414_14" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>15:00 - 16:00</th>
+						<td class=" 21" id="room_411_15" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class="reservated 21" id="room_412_15" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class="reservated 21" id="room_413_15" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class="reservated 21" id="room_414_15" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>16:00 - 17:00</th>
+						<td class="reservated 21" id="room_411_16" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class="reservated 21" id="room_412_16" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class="reservated 21" id="room_413_16" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class="reservated 21" id="room_414_16" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>17:00 - 18:00</th>
+						<td class="reservated 21" id="room_411_17" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class="reservated 21" id="room_412_17" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class=" 21" id="room_413_17" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class=" 21" id="room_414_17" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>18:00 - 19:00</th>
+						<td class="reservated 21" id="room_411_18" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class=" 21" id="room_412_18" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class=" 21" id="room_413_18" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class=" 21" id="room_414_18" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>19:00 - 20:00</th>
+						<td class="reservated 21" id="room_411_19" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class="reservated 21" id="room_412_19" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class="reservated 21" id="room_413_19" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class="reservated 21" id="room_414_19" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>20:00 - 21:00</th>
+						<td class="reservated 21" id="room_411_20" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td  class="reservated 21" id="room_412_20" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class="reservated 21" id="room_413_20" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class="reservated 21" id="room_414_20" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>21:00 - 22:00</th>
+						<td class="reservated 21" id="room_411_21" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class=" 21" id="room_412_21" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class=" 21" id="room_413_21" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+						<td class=" 21" id="room_414_21" onclick="f_modal(this)">
+							<div class="reserv-text">
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<!-- =====================[ 회의실 예약 모달 ]=================================-->
+<div class="bckdrop" style="display:none;"></div>
+<div class="modal" id="resModal" data-bs-backdrop="static"  role="dialog" style="display: none;">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h4>회의실 예약</h4>
+			<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="closeBtn()"></button>
+		</div> 
+		<div class="modal-body" id="modalBody" style="height: 250px; width: 420px;">
+			<table class="resModalTable" style="padding:5px; border-collapse: collapse;">
+				<thead>[회의실 예약 정보]</thead>
+				<tbody style="margin:3px;">
+					<tr class="modalTr">
+						<td class="modalTd">예약 호실</td>
+						<td class="modalTd"><div id ="rmName"style="float:left; width: 70%;">회의실 이름</div></td>
+					</tr>
+					<tr class="modalTr">
+						<td class="modalTd">예약 시간</td>
+						<td class="modalTd">
+							<div id="rmTime" style="float:left; width: 40%; ">예약시간</div>
+							<select name="resTime" style="float:right;" id="timeSelect">
+<!-- 								<option selected>이용 시간 선택</option> -->
+								<option value="1">1시간</option>
+								<option value="2">2시간</option>
+								<option value="3">3시간</option>
+							</select>
+						</td>
+					</tr>
+					<tr class="modalTr">
+						<td class="modalTd">이용 목적</td>
+						<td class="modalTd">
+							<input type="text" id="schContent" name="schContent" value="">
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-warning" id="addBtn" onclick="addBtn(this)">추가</button>
+			<button type="button" class="btn btn-delete" id="delBtn" style="display: none" onclick="">삭제</button>
+			<button type="button" class="btn btn-secondary" data-dismiss="modal" id="CloseBtn" onclick="closeBtn()">취소</button>
+		</div>
+	</div>
+</div>
+<!-- =====================[ 회의실 예약 모달 ]=================================-->

@@ -1,0 +1,91 @@
+package kr.or.ddit.free.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Service;
+
+import kr.or.ddit.attfile.vo.AttFileVO;
+import kr.or.ddit.employee.vo.EmployeeVO;
+import kr.or.ddit.free.vo.FreeVO;
+import kr.or.ddit.mapper.AttfileMapper;
+import kr.or.ddit.mapper.EmployeeMapper;
+import kr.or.ddit.mapper.FreeMapper;
+
+@Service
+public class FreeServiceImpl implements IFreeService{
+
+	@Inject
+	private FreeMapper freeMapper;
+	
+	@Inject
+	private EmployeeMapper empMapper;
+	
+	@Inject
+	private AttfileMapper afMapper;
+	
+	@Override
+	public List<FreeVO> getFreeList() {
+		// TODO Auto-generated method stub
+		return freeMapper.getFreeList();
+	}
+
+	@Override
+	public FreeVO getFree(String freeNo) {
+		// TODO Auto-generated method stub
+		return freeMapper.getFree(freeNo);
+	}
+
+	@Override
+	public void incrementHit(String freeNo) {
+		// TODO Auto-generated method stub
+		freeMapper.incrementHit(freeNo);
+	}
+
+	@Override
+	public List<EmployeeVO> getEmpByFreeList(List<FreeVO> freeList) {
+		// TODO Auto-generated method stub
+		List<EmployeeVO> empList = new ArrayList<EmployeeVO>();
+	
+		for (int i = 0; i < freeList.size(); i++) {
+			EmployeeVO empVO = new EmployeeVO();
+			
+			String empNo = freeList.get(i).getEmpNo();
+			empVO.setEmpNo(empNo);
+			
+			empVO = empMapper.getEmp(empVO);
+			empList.add(empVO);
+		}
+		
+		return empList;
+	}
+
+	@Override
+	public EmployeeVO getEmpByFree(FreeVO freeVO) {
+		// TODO Auto-generated method stub
+		EmployeeVO empVO = new EmployeeVO();
+		
+		empVO.setEmpNo(freeVO.getEmpNo());
+		
+		return empMapper.getEmp(empVO);
+	}
+
+	@Override
+	public AttFileVO getAf(String afNo) {
+		// TODO Auto-generated method stub
+		return afMapper.getAf(afNo);
+	}
+
+
+	
+	
+	
+
+	
+	
+}
+
+
+

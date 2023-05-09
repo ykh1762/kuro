@@ -1,0 +1,25 @@
+package kr.or.ddit.attfile.vo;
+
+import java.util.Date;
+
+import lombok.Data;
+
+@Data
+public class AttFileVO {
+
+	private int aFNo;
+	private int accNo;
+	private int assNo;
+	private int appNo;
+	private int mailNo;
+	private int chatNo;
+	private int empNo;
+	private int cloNo;
+	private int postNo;
+	private int freeNo;
+	private int notNo;
+	private Date aFDate;
+	private String aFType;
+	private String aFSave;
+	private String tCode;
+}

@@ -1,0 +1,21 @@
+package kr.or.ddit.approval.service;
+
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Service;
+
+import kr.or.ddit.approval.vo.ApFormVO;
+import kr.or.ddit.mapper.AppMapper;
+
+@Service
+public class AppServiceImpl implements IAppService {
+
+	@Inject
+	private AppMapper appMaper;
+	
+	@Override
+	public ApFormVO selectForm(String apfName) {
+		return appMaper.selectForm(apfName);
+	}
+
+}

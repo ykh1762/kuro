@@ -1,0 +1,64 @@
+package kr.or.ddit.employee.controller;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.inject.Inject;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import kr.or.ddit.employee.service.IEmpService;
+import kr.or.ddit.employee.vo.EmployeeVO;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@Controller
+@RequestMapping("/emp")
+public class EmpController {
+	
+	@Inject
+	private IEmpService empService;
+	
+	@GetMapping("/home")
+	public String tree() {
+		log.debug("jsTree");
+		
+		return "employee/jsTree";
+	}
+	
+	
+	@ResponseBody
+	@PostMapping("/home")
+	public JSONArray empList() {
+		List<EmployeeVO> list = empService.list();
+		JSONObject jsonObj = new JSONObject();
+		JSONArray jsonArr = new JSONArray();
+		
+		// 필요한 정보
+		// 부서코드, 사원이름, 부서이름(조인필요)
+		// 직급코드(직책), 사원코드, 메일, 전화번호, 상태메세지, 회사코드(회사이름)
+		Map<String, Object> map = new HashMap<String, Object>();
+		for(int i=0; i < list.size(); i++) {
+			map.put("id", list.get(i).getDepCode());
+			map.put("empName", list.get(i).getEmpName());
+			map.put("depName", list.get(i).getDepName());
+			map.put("empPos", list.get(i).getEmpPos());
+			map.put("empNo", list.get(i).getEmpNo());
+			map.put("empEmail", list.get(i).getEmpEmail());
+			map.put("empTel", list.get(i).getEmpTel());
+			map.put("empMsg", list.get(i).getEmpMsg());
+			map.put("coCode", list.get(i).getCoCode());
+			jsonObj = new JSONObject(map);
+			jsonArr.add(jsonObj);
+		}
+		System.out.println("[emp] jsonArr : " + jsonArr);
+		return jsonArr;
+	}
+}

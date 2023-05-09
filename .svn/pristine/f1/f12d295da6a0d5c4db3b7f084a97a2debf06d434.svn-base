@@ -1,0 +1,39 @@
+package kr.or.ddit.main.service;
+
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Service;
+
+import kr.or.ddit.attfile.vo.AttFileVO;
+import kr.or.ddit.employee.vo.EmployeeVO;
+import kr.or.ddit.mapper.EmpMapper;
+import kr.or.ddit.mapper.AFMapper;
+
+@Service
+public class LoginServiceImpl implements ILoginService{
+
+	@Inject
+	private EmpMapper empMapper;
+	
+	@Inject
+	private AFMapper aFMapper;
+	
+	@Override
+	public EmployeeVO getEmp(EmployeeVO empVO) {
+		// TODO Auto-generated method stub
+		return empMapper.getEmp(empVO);
+	}
+
+	@Override
+	public AttFileVO getAFByEmpNo(int empNo) {
+		// TODO Auto-generated method stub
+		return aFMapper.getAFByEmpNo(empNo);
+	}
+
+	@Override
+	public EmployeeVO loginCheck(EmployeeVO empVO) {
+		// TODO Auto-generated method stub
+		return empMapper.loginCheck(empVO);
+	}
+
+}

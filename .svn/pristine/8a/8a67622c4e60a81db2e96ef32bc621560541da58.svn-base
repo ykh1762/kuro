@@ -1,0 +1,11 @@
+package kr.or.ddit.mapper;
+
+import kr.or.ddit.employee.vo.EmployeeVO;
+
+public interface EmpMapper {
+
+	public EmployeeVO getEmp(EmployeeVO empVO);
+
+	public EmployeeVO loginCheck(EmployeeVO empVO);
+
+}

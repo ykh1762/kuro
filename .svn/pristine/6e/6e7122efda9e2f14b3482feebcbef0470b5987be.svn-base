@@ -1,0 +1,32 @@
+package kr.or.ddit.free.service;
+
+import java.util.List;
+
+import kr.or.ddit.attfile.vo.AttFileVO;
+import kr.or.ddit.employee.vo.EmployeeVO;
+import kr.or.ddit.free.vo.FreeVO;
+import kr.or.ddit.good.vo.GoodVO;
+
+public interface IFreeService {
+
+	public List<FreeVO> getFreeList();
+
+	public FreeVO getFree(String freeNo);
+
+	public void incrementHit(String freeNo);
+
+	public List<EmployeeVO> getEmpByFreeList(List<FreeVO> freeList);
+
+	public EmployeeVO getEmpByFree(FreeVO freeVO);
+
+	public AttFileVO getAf(String afNo);
+
+	public List<Integer> getGoodByFreeList(List<FreeVO> freeList);
+
+	public List<GoodVO> getGood(String goodNo);
+
+	public List<EmployeeVO> getEmpByGoodList(List<GoodVO> goodList);
+
+	public List<String> getTimeList(List<GoodVO> goodList);
+
+}

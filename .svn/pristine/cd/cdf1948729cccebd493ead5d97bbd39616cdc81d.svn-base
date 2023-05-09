@@ -1,0 +1,52 @@
+package kr.or.ddit.approval.controller;
+
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import kr.or.ddit.approval.service.IAppService;
+import kr.or.ddit.approval.vo.ApFormVO;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@Controller
+@RequestMapping("/approval")
+public class ApprovalMainController {
+
+	@Inject
+	private IAppService appService;
+	
+	@GetMapping("/home")
+	public String main() {
+		return "approval/home";
+	}
+	
+	@GetMapping("/order")
+	public String order() {
+		return "approval/order";
+	}
+
+	@GetMapping("/vacation")
+	public String vacation() {
+		return "approval/vacation";
+	}
+	
+	@RequestMapping(value="/bisOrd", method = RequestMethod.POST)
+	public String noticeDetail(String apfName, Model model) {
+		ApFormVO form = appService.selectForm(apfName);
+		model.addAttribute("apform", form);
+		log.info("체크: ", apfName);
+		return "approval/bisOrd";
+	}
+	
+	@GetMapping("/employment")
+	public String employment() {
+		return "approval/employment";
+	}
+	
+	
+}

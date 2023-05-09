@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.ddit.mapper.ScheduleMapper">
+
+	<select id="list" resultType="schVO">
+		select
+			SCHNO,EMPNO,a.ACCNO,COMMNO,GOODNO,TIMNO,SCHTITLE,SCHCONTENT,
+			SCHSTART,SCHEND,SCHLOCATION,SCHTYPE,SCHREAD,SCHCOLOR,
+			B.ACCNAME
+		from schedule a, account b
+		where a.accno = b.accno
+	</select>
+
+	
+
+
+
+</mapper>
+
+
+
+

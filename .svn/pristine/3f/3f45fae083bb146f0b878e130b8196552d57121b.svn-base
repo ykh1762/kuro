@@ -1,0 +1,693 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<link rel="stylesheet" type="text/css" href="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.css" />
+<link rel="stylesheet" type="text/css" href="https://uicdn.toast.com/tui.time-picker/latest/tui-time-picker.css" />
+<script src="https://uicdn.toast.com/tui.code-snippet/v1.5.2/tui-code-snippet.min.js"></script>
+<script src="https://uicdn.toast.com/tui.time-picker/latest/tui-time-picker.min.js"></script>
+<script src="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+<div class="container-fluid">
+	<div>
+	    <div class="input-group mb-3">
+	    	<input type="text" class="form-control singledate" />
+	    <span class="input-group-text">
+	    	<i data-feather="calendar" class="feather-sm"></i>
+	    </span>
+	    </div>
+	</div>
+	<div class="row">
+		<div class="col-md-10">
+			<h4>본사 1층 회의실</h4>
+			<table class="table table-sm table-bordered reserv-table">
+				<thead>
+					<tr>
+						<th style="width: 5rem;">시간대</th>
+						<th colspan="5">본사 1층 회의실</th>
+					</tr>
+					<tr>
+						<th>구분</th>
+						<td>101호 회의실</td>
+						<td>102호 회의실</td>
+						<td>103호 회의실</td>
+						<td>104호 회의실</td>
+						<td>105호 회의실</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th>9</th>
+						<td rowspan="1" class="disable 21" id="room_313_9"
+							data-drr_num="313" data-drr_type="01" data-drt_time="9"
+							data-drr_idx="1" data-drt_idx="1">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));">
+								<a href="javascript:void(0);"></a>
+							</div>
+						</td>
+						<td rowspan="1" class="disable 21" id="room_314_9"
+							data-drr_num="314" data-drr_type="01" data-drt_time="9"
+							data-drr_idx="2" data-drt_idx="1">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));">
+								<a href="javascript:void(0);"></a>
+							</div>
+						</td>
+						<td rowspan="1" class="reservated 21" id="room_315_9"
+							data-drr_num="315" data-drr_type="01" data-drt_time="9"
+							data-drr_idx="3" data-drt_idx="1">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);">304_임치택</a>
+							</div>
+						</td>
+						<td rowspan="1" class="disable 21" id="room_316_9"
+							data-drr_num="316" data-drr_type="01" data-drt_time="9"
+							data-drr_idx="4" data-drt_idx="1">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));">
+								<a href="javascript:void(0);"></a>
+							</div>
+						</td>
+						<td rowspan="1" class="disable 16" id="room_307_9"
+							data-drr_num="307" data-drr_type="02" data-drt_time="9"
+							data-drr_idx="10" data-drt_idx="1">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));">
+								<a href="javascript:void(0);"></a>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>10</th>
+						<td rowspan="1" class="disable 21" id="room_313_10"
+							data-drr_num="313" data-drr_type="01" data-drt_time="10"
+							data-drr_idx="1" data-drt_idx="2">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));">
+								<a href="javascript:void(0);"></a>
+							</div>
+						</td>
+						<td rowspan="1" class="disable 21" id="room_314_10"
+							data-drr_num="314" data-drr_type="01" data-drt_time="10"
+							data-drr_idx="2" data-drt_idx="2">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));">
+								<a href="javascript:void(0);"></a>
+							</div>
+						</td>
+						<td rowspan="1" class="reservated 21" id="room_315_10"
+							data-drr_num="315" data-drr_type="01" data-drt_time="10"
+							data-drr_idx="3" data-drt_idx="2">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);">304_임치택</a>
+							</div>
+						</td>
+						<td rowspan="1" class="disable 21" id="room_316_10"
+							data-drr_num="316" data-drr_type="01" data-drt_time="10"
+							data-drr_idx="4" data-drt_idx="2">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));">
+								<a href="javascript:void(0);"></a>
+							</div>
+						</td>
+						<td rowspan="1" class="disable 16" id="room_307_10"
+							data-drr_num="307" data-drr_type="02" data-drt_time="10"
+							data-drr_idx="10" data-drt_idx="2">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));">
+								<a href="javascript:void(0);"></a>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>11</th>
+						<td rowspan="1" class=" 21" id="room_313_11" data-drr_num="313"
+							data-drr_type="01" data-drt_time="11" data-drr_idx="1"
+							data-drt_idx="3" onclick="modal_setval($(this));"
+							data-toggle="modal" data-target="#reservation_form_modal">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);"></a>
+							</div>
+						</td>
+						<td rowspan="1" class=" 21" id="room_314_11" data-drr_num="314"
+							data-drr_type="01" data-drt_time="11" data-drr_idx="2"
+							data-drt_idx="3" onclick="modal_setval($(this));"
+							data-toggle="modal" data-target="#reservation_form_modal">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);"></a>
+							</div>
+						</td>
+						<td rowspan="1" class="reservated 21" id="room_315_11"
+							data-drr_num="315" data-drr_type="01" data-drt_time="11"
+							data-drr_idx="3" data-drt_idx="3">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);">304_서동혁</a>
+							</div>
+						</td>
+						<td rowspan="1" class=" 21" id="room_316_11" data-drr_num="316"
+							data-drr_type="01" data-drt_time="11" data-drr_idx="4"
+							data-drt_idx="3" onclick="modal_setval($(this));"
+							data-toggle="modal" data-target="#reservation_form_modal">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);"></a>
+							</div>
+						</td>
+						<td rowspan="1" class=" 16" id="room_307_11" data-drr_num="307"
+							data-drr_type="02" data-drt_time="11" data-drr_idx="10"
+							data-drt_idx="3" onclick="modal_setval($(this));"
+							data-toggle="modal" data-target="#reservation_form_modal">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);"></a>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>12</th>
+						<td rowspan="1" class=" 21" id="room_313_12" data-drr_num="313"
+							data-drr_type="01" data-drt_time="12" data-drr_idx="1"
+							data-drt_idx="4" onclick="modal_setval($(this));"
+							data-toggle="modal" data-target="#reservation_form_modal">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);"></a>
+							</div>
+						</td>
+						<td rowspan="1" class=" 21" id="room_314_12" data-drr_num="314"
+							data-drr_type="01" data-drt_time="12" data-drr_idx="2"
+							data-drt_idx="4" onclick="modal_setval($(this));"
+							data-toggle="modal" data-target="#reservation_form_modal">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);"></a>
+							</div>
+						</td>
+						<td rowspan="1" class="reservated 21" id="room_315_12"
+							data-drr_num="315" data-drr_type="01" data-drt_time="12"
+							data-drr_idx="3" data-drt_idx="4">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);">304_서동혁</a>
+							</div>
+						</td>
+						<td rowspan="1" class=" 21" id="room_316_12" data-drr_num="316"
+							data-drr_type="01" data-drt_time="12" data-drr_idx="4"
+							data-drt_idx="4" onclick="modal_setval($(this));"
+							data-toggle="modal" data-target="#reservation_form_modal">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);"></a>
+							</div>
+						</td>
+						<td rowspan="1" class=" 16" id="room_307_12" data-drr_num="307"
+							data-drr_type="02" data-drt_time="12" data-drr_idx="10"
+							data-drt_idx="4" onclick="modal_setval($(this));"
+							data-toggle="modal" data-target="#reservation_form_modal">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);"></a>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>13</th>
+						<td rowspan="1" class=" 21" id="room_313_13" data-drr_num="313"
+							data-drr_type="01" data-drt_time="13" data-drr_idx="1"
+							data-drt_idx="5" onclick="modal_setval($(this));"
+							data-toggle="modal" data-target="#reservation_form_modal">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);"></a>
+							</div>
+						</td>
+						<td rowspan="1" class=" 21" id="room_314_13" data-drr_num="314"
+							data-drr_type="01" data-drt_time="13" data-drr_idx="2"
+							data-drt_idx="5" onclick="modal_setval($(this));"
+							data-toggle="modal" data-target="#reservation_form_modal">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);"></a>
+							</div>
+						</td>
+						<td rowspan="1" class=" 21" id="room_315_13" data-drr_num="315"
+							data-drr_type="01" data-drt_time="13" data-drr_idx="3"
+							data-drt_idx="5" onclick="modal_setval($(this));"
+							data-toggle="modal" data-target="#reservation_form_modal">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);"></a>
+							</div>
+						</td>
+						<td rowspan="1" class=" 21" id="room_316_13" data-drr_num="316"
+							data-drr_type="01" data-drt_time="13" data-drr_idx="4"
+							data-drt_idx="5" onclick="modal_setval($(this));"
+							data-toggle="modal" data-target="#reservation_form_modal">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);"></a>
+							</div>
+						</td>
+						<td rowspan="1" class=" 16" id="room_307_13" data-drr_num="307"
+							data-drr_type="02" data-drt_time="13" data-drr_idx="10"
+							data-drt_idx="5" onclick="modal_setval($(this));"
+							data-toggle="modal" data-target="#reservation_form_modal">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);"></a>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>14</th>
+						<td rowspan="1" class=" 21" id="room_313_14" data-drr_num="313"
+							data-drr_type="01" data-drt_time="14" data-drr_idx="1"
+							data-drt_idx="6" onclick="modal_setval($(this));"
+							data-toggle="modal" data-target="#reservation_form_modal">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);"></a>
+							</div>
+						</td>
+						<td rowspan="1" class=" 21" id="room_314_14" data-drr_num="314"
+							data-drr_type="01" data-drt_time="14" data-drr_idx="2"
+							data-drt_idx="6" onclick="modal_setval($(this));"
+							data-toggle="modal" data-target="#reservation_form_modal">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);"></a>
+							</div>
+						</td>
+						<td rowspan="1" class="reservated 21" id="room_315_14"
+							data-drr_num="315" data-drr_type="01" data-drt_time="14"
+							data-drr_idx="3" data-drt_idx="6">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);">304_김혜림</a>
+							</div>
+						</td>
+						<td rowspan="1" class=" 21" id="room_316_14" data-drr_num="316"
+							data-drr_type="01" data-drt_time="14" data-drr_idx="4"
+							data-drt_idx="6" onclick="modal_setval($(this));"
+							data-toggle="modal" data-target="#reservation_form_modal">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);"></a>
+							</div>
+						</td>
+						<td rowspan="1" class=" 16" id="room_307_14" data-drr_num="307"
+							data-drr_type="02" data-drt_time="14" data-drr_idx="10"
+							data-drt_idx="6" onclick="modal_setval($(this));"
+							data-toggle="modal" data-target="#reservation_form_modal">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);"></a>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>15</th>
+						<td rowspan="1" class=" 21" id="room_313_15" data-drr_num="313"
+							data-drr_type="01" data-drt_time="15" data-drr_idx="1"
+							data-drt_idx="7" onclick="modal_setval($(this));"
+							data-toggle="modal" data-target="#reservation_form_modal">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);"></a>
+							</div>
+						</td>
+						<td rowspan="1" class=" 21" id="room_314_15" data-drr_num="314"
+							data-drr_type="01" data-drt_time="15" data-drr_idx="2"
+							data-drt_idx="7" onclick="modal_setval($(this));"
+							data-toggle="modal" data-target="#reservation_form_modal">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);"></a>
+							</div>
+						</td>
+						<td rowspan="1" class="reservated 21" id="room_315_15"
+							data-drr_num="315" data-drr_type="01" data-drt_time="15"
+							data-drr_idx="3" data-drt_idx="7">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);">304_김혜림</a>
+							</div>
+						</td>
+						<td rowspan="1" class=" 21" id="room_316_15" data-drr_num="316"
+							data-drr_type="01" data-drt_time="15" data-drr_idx="4"
+							data-drt_idx="7" onclick="modal_setval($(this));"
+							data-toggle="modal" data-target="#reservation_form_modal">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);"></a>
+							</div>
+						</td>
+						<td rowspan="1" class=" 16" id="room_307_15" data-drr_num="307"
+							data-drr_type="02" data-drt_time="15" data-drr_idx="10"
+							data-drt_idx="7" onclick="modal_setval($(this));"
+							data-toggle="modal" data-target="#reservation_form_modal">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);"></a>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>16</th>
+						<td rowspan="1" class="reservated 21" id="room_313_16"
+							data-drr_num="313" data-drr_type="01" data-drt_time="16"
+							data-drr_idx="1" data-drt_idx="8">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);">304_박경훈</a>
+							</div>
+						</td>
+						<td rowspan="1" class=" 21" id="room_314_16" data-drr_num="314"
+							data-drr_type="01" data-drt_time="16" data-drr_idx="2"
+							data-drt_idx="8" onclick="modal_setval($(this));"
+							data-toggle="modal" data-target="#reservation_form_modal">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);"></a>
+							</div>
+						</td>
+						<td rowspan="1" class="reservated 21" id="room_315_16"
+							data-drr_num="315" data-drr_type="01" data-drt_time="16"
+							data-drr_idx="3" data-drt_idx="8">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);">304_임주완</a>
+							</div>
+						</td>
+						<td rowspan="1" class=" 21" id="room_316_16" data-drr_num="316"
+							data-drr_type="01" data-drt_time="16" data-drr_idx="4"
+							data-drt_idx="8" onclick="modal_setval($(this));"
+							data-toggle="modal" data-target="#reservation_form_modal">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);"></a>
+							</div>
+						</td>
+						<td rowspan="1" class=" 16" id="room_307_16" data-drr_num="307"
+							data-drr_type="02" data-drt_time="16" data-drr_idx="10"
+							data-drt_idx="8" onclick="modal_setval($(this));"
+							data-toggle="modal" data-target="#reservation_form_modal">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);"></a>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>17</th>
+						<td rowspan="1" class=" 21" id="room_313_17" data-drr_num="313"
+							data-drr_type="01" data-drt_time="17" data-drr_idx="1"
+							data-drt_idx="9" onclick="modal_setval($(this));"
+							data-toggle="modal" data-target="#reservation_form_modal">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);"></a>
+							</div>
+						</td>
+						<td rowspan="1" class=" 21" id="room_314_17" data-drr_num="314"
+							data-drr_type="01" data-drt_time="17" data-drr_idx="2"
+							data-drt_idx="9" onclick="modal_setval($(this));"
+							data-toggle="modal" data-target="#reservation_form_modal">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);"></a>
+							</div>
+						</td>
+						<td rowspan="1" class="reservated 21" id="room_315_17"
+							data-drr_num="315" data-drr_type="01" data-drt_time="17"
+							data-drr_idx="3" data-drt_idx="9">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);">304_임주완</a>
+							</div>
+						</td>
+						<td rowspan="1" class=" 21" id="room_316_17" data-drr_num="316"
+							data-drr_type="01" data-drt_time="17" data-drr_idx="4"
+							data-drt_idx="9" onclick="modal_setval($(this));"
+							data-toggle="modal" data-target="#reservation_form_modal">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);"></a>
+							</div>
+						</td>
+						<td rowspan="1" class="disable 16" id="room_307_17"
+							data-drr_num="307" data-drr_type="02" data-drt_time="17"
+							data-drr_idx="10" data-drt_idx="9">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));">
+								<a href="javascript:void(0);"></a>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>18</th>
+						<td rowspan="1" class=" 21" id="room_313_18" data-drr_num="313"
+							data-drr_type="01" data-drt_time="18" data-drr_idx="1"
+							data-drt_idx="10" onclick="modal_setval($(this));"
+							data-toggle="modal" data-target="#reservation_form_modal">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);"></a>
+							</div>
+						</td>
+						<td rowspan="1" class=" 21" id="room_314_18" data-drr_num="314"
+							data-drr_type="01" data-drt_time="18" data-drr_idx="2"
+							data-drt_idx="10" onclick="modal_setval($(this));"
+							data-toggle="modal" data-target="#reservation_form_modal">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);"></a>
+							</div>
+						</td>
+						<td rowspan="1" class=" 21" id="room_315_18" data-drr_num="315"
+							data-drr_type="01" data-drt_time="18" data-drr_idx="3"
+							data-drt_idx="10" onclick="modal_setval($(this));"
+							data-toggle="modal" data-target="#reservation_form_modal">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);"></a>
+							</div>
+						</td>
+						<td rowspan="1" class=" 21" id="room_316_18" data-drr_num="316"
+							data-drr_type="01" data-drt_time="18" data-drr_idx="4"
+							data-drt_idx="10" onclick="modal_setval($(this));"
+							data-toggle="modal" data-target="#reservation_form_modal">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);"></a>
+							</div>
+						</td>
+						<td rowspan="1" class="disable 16" id="room_307_18"
+							data-drr_num="307" data-drr_type="02" data-drt_time="18"
+							data-drr_idx="10" data-drt_idx="10">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));">
+								<a href="javascript:void(0);"></a>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>19</th>
+						<td rowspan="1" class="reservated 21" id="room_313_19"
+							data-drr_num="313" data-drr_type="01" data-drt_time="19"
+							data-drr_idx="1" data-drt_idx="11">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);">306_이윤재</a>
+							</div>
+						</td>
+						<td rowspan="1" class="reservated 21" id="room_314_19"
+							data-drr_num="314" data-drr_type="01" data-drt_time="19"
+							data-drr_idx="2" data-drt_idx="11">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);">306_김지현</a>
+							</div>
+						</td>
+						<td rowspan="1" class="reservated 21" id="room_315_19"
+							data-drr_num="315" data-drr_type="01" data-drt_time="19"
+							data-drr_idx="3" data-drt_idx="11">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);">304_양유림</a>
+							</div>
+						</td>
+						<td rowspan="1" class="reservated 21" id="room_316_19"
+							data-drr_num="316" data-drr_type="01" data-drt_time="19"
+							data-drr_idx="4" data-drt_idx="11">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);">306_이상엽</a>
+							</div>
+						</td>
+						<td rowspan="1" class="disable 16" id="room_307_19"
+							data-drr_num="307" data-drr_type="02" data-drt_time="19"
+							data-drr_idx="10" data-drt_idx="11">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));">
+								<a href="javascript:void(0);"></a>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>20</th>
+						<td rowspan="1" class="reservated 21" id="room_313_20"
+							data-drr_num="313" data-drr_type="01" data-drt_time="20"
+							data-drr_idx="1" data-drt_idx="12">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);">306_이윤재</a>
+							</div>
+						</td>
+						<td rowspan="1" class="reservated 21" id="room_314_20"
+							data-drr_num="314" data-drr_type="01" data-drt_time="20"
+							data-drr_idx="2" data-drt_idx="12">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);">306_김지현</a>
+							</div>
+						</td>
+						<td rowspan="1" class="reservated 21" id="room_315_20"
+							data-drr_num="315" data-drr_type="01" data-drt_time="20"
+							data-drr_idx="3" data-drt_idx="12">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);">304_양유림</a>
+							</div>
+						</td>
+						<td rowspan="1" class="reservated 21" id="room_316_20"
+							data-drr_num="316" data-drr_type="01" data-drt_time="20"
+							data-drr_idx="4" data-drt_idx="12">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);">306_이상엽</a>
+							</div>
+						</td>
+						<td rowspan="1" class="disable 16" id="room_307_20"
+							data-drr_num="307" data-drr_type="02" data-drt_time="20"
+							data-drr_idx="10" data-drt_idx="12">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));">
+								<a href="javascript:void(0);"></a>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>21</th>
+						<td rowspan="1" class=" 21" id="room_313_21" data-drr_num="313"
+							data-drr_type="01" data-drt_time="21" data-drr_idx="1"
+							data-drt_idx="13" onclick="modal_setval($(this));"
+							data-toggle="modal" data-target="#reservation_form_modal">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);"></a>
+							</div>
+						</td>
+						<td rowspan="1" class=" 21" id="room_314_21" data-drr_num="314"
+							data-drr_type="01" data-drt_time="21" data-drr_idx="2"
+							data-drt_idx="13" onclick="modal_setval($(this));"
+							data-toggle="modal" data-target="#reservation_form_modal">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);"></a>
+							</div>
+						</td>
+						<td rowspan="1" class=" 21" id="room_315_21" data-drr_num="315"
+							data-drr_type="01" data-drt_time="21" data-drr_idx="3"
+							data-drt_idx="13" onclick="modal_setval($(this));"
+							data-toggle="modal" data-target="#reservation_form_modal">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);"></a>
+							</div>
+						</td>
+						<td rowspan="1" class=" 21" id="room_316_21" data-drr_num="316"
+							data-drr_type="01" data-drt_time="21" data-drr_idx="4"
+							data-drt_idx="13" onclick="modal_setval($(this));"
+							data-toggle="modal" data-target="#reservation_form_modal">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));"
+								data-toggle="modal" data-target="#reservation_form_modal">
+								<a href="javascript:void(0);"></a>
+							</div>
+						</td>
+						<td rowspan="1" class="disable 16" id="room_307_21"
+							data-drr_num="307" data-drr_type="02" data-drt_time="21"
+							data-drr_idx="10" data-drt_idx="13">
+							<div class="reserv-text"
+								onclick="modal_setval($(this).closest('td'));">
+								<a href="javascript:void(0);"></a>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="col-md-10">
+			<h4>본사 3층 회의실</h4>
+		</div>
+	</div>
+</div>
+
+

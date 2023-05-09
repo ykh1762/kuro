@@ -1,0 +1,5 @@
+package kr.or.ddit.good.service;
+
+public class GoodServiceImpl implements IGoodService {
+
+}

@@ -1,0 +1,64 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <div class="content" style="width:100px; height:100px;">
+    </div>
+    
+    
+    <div class="left-part">
+            <a
+              class="ri-menu-fill ri-close-fill btn btn-success show-left-part d-block d-md-none"
+              href="javascript:void(0)"
+            ></a>
+            <div class="scrollable" style="height: 100%">
+             
+              <div class="divider"></div>
+              <ul class="list-group">
+               
+                <li class="list-group-item">
+                  <a
+                    href="/good/list"
+                    class="active list-group-item-action d-flex align-items-center"
+                    ><i data-feather="heart" class="feather-sm fill-white me-2"></i>
+                    나의 좋아요
+                    <span
+                      class="
+                        badge
+                        bg-light-danger
+                        text-danger
+                        font-medium
+                        px-3
+                        rounded-pill
+                        ms-auto
+                      "
+                      >6</span
+                    ></a
+                  >
+                </li>
+                <li class="list-group-item">
+                  <a
+                    href="/good/list2"
+                    class="list-group-item-action d-flex align-items-center"
+                  >
+                    <i data-feather="heart" class="feather-sm fill-white me-2"></i>
+                    상대방의 좋아요
+                    <span
+                      class="
+                        badge
+                        bg-light-danger
+                        text-danger
+                        font-medium
+                        px-3
+                        rounded-pill
+                        ms-auto
+                      "
+                      >3</span
+                    ></a
+                  >
+                </li>
+               
+               
+               
+               
+              </ul>
+            </div>
+          </div>

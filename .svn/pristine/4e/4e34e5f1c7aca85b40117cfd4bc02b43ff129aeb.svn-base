@@ -1,0 +1,263 @@
+package kr.or.ddit.message.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import kr.or.ddit.message.service.IMessageService;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@Controller
+@RequestMapping("/message")
+public class MessageController {
+	
+	private IMessageService messageService;
+	
+	@GetMapping("/home")
+	public String home() {
+		
+		return "message/home";
+	}
+	@GetMapping("/list")
+	public String list() {
+		
+		return "message/list";
+	}
+	@GetMapping("/list2")
+	public String list2() {
+		
+		return "message/list2";
+	}
+	@GetMapping("/write")
+	public String write() {
+		
+		return "message/write";
+	}
+	@GetMapping("/store")
+	public String store() {
+		
+		return "message/store";
+	}
+}
+//////////////////////////////////////////////////////////////////
+/*
+ * @Autowired MailService mailService;
+ * 
+ * @Autowired AddressService addressService;
+ * 
+ * @GetMapping("/recieveList") public String list(Model model, @ModelAttribute
+ * MailVO mailVO) { Object principal =
+ * SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+ * UserDetails userDetails = (UserDetails)principal; String username =
+ * userDetails.getUsername();
+ * 
+ * mailVO.setEmpNo(username); model.addAttribute("pageMain","Mail");
+ * model.addAttribute("pageDetail","receiveList");
+ * model.addAttribute("pageName","받은메일함");
+ * 
+ * 
+ * List<MailVO> recieveEMLList = mailService.recieveEMLList(mailVO);
+ * 
+ * model.addAttribute("data", recieveEMLList);
+ * 
+ * return "mail/recieveList"; }
+ * 
+ * @ResponseBody
+ * 
+ * @GetMapping("/totalCnt") public int totalCnt(String username) { Object
+ * principal =
+ * SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+ * UserDetails userDetails = (UserDetails)principal; username =
+ * userDetails.getUsername();
+ * 
+ * int totalMailCnt = mailService.totalMailCnt(username);
+ * 
+ * return totalMailCnt; }
+ * 
+ * @ResponseBody
+ * 
+ * @GetMapping("/unReadCnt") public int unReadCnt(String username) { Object
+ * principal =
+ * SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+ * UserDetails userDetails = (UserDetails)principal; username =
+ * userDetails.getUsername();
+ * 
+ * int unReadMailCnt = mailService.unReadMailCnt(username);
+ * log.info("unReadMailCnt : " + unReadMailCnt);
+ * 
+ * return unReadMailCnt; }
+ * 
+ * @GetMapping("/detail") public String detail(@ModelAttribute MailVO mailVO,
+ * Model model) { model.addAttribute("pageMain","Mail");
+ * model.addAttribute("pageDetail","detail");
+ * model.addAttribute("pageName","메일 상세");
+ * 
+ * log.info("mailVO:"+ mailVO);
+ * 
+ * List<MailVO> mailDetail = mailService.detail(mailVO); log.info("mailDetail:",
+ * mailDetail);
+ * 
+ * model.addAttribute("data", mailDetail);
+ * 
+ * return "mail/detail"; }
+ * 
+ * @GetMapping("/write") public String write(Model model, @ModelAttribute AddrVO
+ * addrVO,
+ * 
+ * @RequestParam(value="searchType", required = false) String searchType,
+ * 
+ * @RequestParam(value="keyword", required = false) String keyword) {
+ * model.addAttribute("pageMain","Mail");
+ * model.addAttribute("pageDetail","write");
+ * model.addAttribute("pageName","메일 작성");
+ * 
+ * Object principal =
+ * SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+ * UserDetails userDetails = (UserDetails)principal; String username =
+ * userDetails.getUsername();
+ * 
+ * addrVO.setEmpNo(username);
+ * 
+ * Map<String, String> map = new HashMap<String, String>(); map.put("username",
+ * username); map.put("searchType", searchType); map.put("keyword", keyword);
+ * 
+ * List<AddrVO> addrList = addressService.addrList(map); log.info("addrList : "
+ * + addrList);
+ * 
+ * model.addAttribute("addrVO", addrVO); model.addAttribute("data", addrList);
+ * model.addAttribute("searchType", searchType);
+ * 
+ * return "mail/write"; }
+ * 
+ * // 메일쓰기의 주소록 ajax로 불러오기 위한 메소드
+ * 
+ * @ResponseBody
+ * 
+ * @GetMapping("/addrAjax") public List<AddrVO> addrAjax(
+ * 
+ * @RequestParam(value="searchType", required = false) String searchType,
+ * 
+ * @RequestParam(value="keyword", required = false) String keyword){
+ * log.info("searchType : " + searchType); log.info("keyword : " + keyword);
+ * 
+ * Object principal =
+ * SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+ * UserDetails userDetails = (UserDetails)principal; String username =
+ * userDetails.getUsername();
+ * 
+ * // addrVO.setEmpNo(username);
+ * 
+ * Map<String, String> map = new HashMap<String, String>(); map.put("username",
+ * username); map.put("searchType", searchType); map.put("keyword", keyword);
+ * 
+ * log.info("map : " + map); List<AddrVO> addrList =
+ * addressService.addrList(map); log.info("addrList : " + addrList);
+ * 
+ * return addrList; }
+ * 
+ * //메일쓰기의 주소록 체크된 값들 ajax로 비동처러리하는 메소드
+ * 
+ * @ResponseBody
+ * 
+ * @PostMapping("/checkAddr") public List<String> checkAddr(@RequestBody AddrVO
+ * addrVO) { log.info("1 addrVO : " + addrVO);
+ * 
+ * for(int addrNoArr : addrVO.getAddrNoArray()) { addrVO.setAddrNo(addrNoArr); }
+ * log.info("2 addrVO : " + addrVO);
+ * 
+ * List<AddrVO> checkAddrList = addressService.checkAddr(addrVO);
+ * log.info("checkAddrList : " + checkAddrList);
+ * 
+ * List<String> emlAddrList = new ArrayList<String>();
+ * 
+ * for(AddrVO addrList : checkAddrList) { log.info("addrList : " + addrList);
+ * 
+ * String emlAddr =addrList.getEmlAddr();
+ * 
+ * log.info("emlAddr : " + emlAddr);
+ * 
+ * emlAddrList.add(emlAddr); } log.info("emlAddrList :" + emlAddrList);
+ * 
+ * return emlAddrList; }
+ * 
+ * @ResponseBody // produces : text로 ajax의 text로 맞춘거
+ * 
+ * @RequestMapping(value="/myEmail", produces = "text/plain; charset=utf-8")
+ * public ResponseEntity<String> myEmail() { Object principal =
+ * SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+ * UserDetails userDetails = (UserDetails)principal; String username =
+ * userDetails.getUsername();
+ * 
+ * AddrVO addrVO = new AddrVO(); log.info("username" + username);
+ * 
+ * addrVO.setEmpNo(username);
+ * 
+ * log.info("addrVO 1 :" + addrVO);
+ * 
+ * String getMyEmail = addressService.getMyEmail(addrVO);
+ * 
+ * log.info("addrVO 2 :" + addrVO); log.info("getMyEmail : " + getMyEmail);
+ * 
+ * //String으로 getMyEmail을 리턴해도됨. 그땐 메소드 타입도 String으로 맞춰줘야함.
+ * ResponseEntity<String> entity = new ResponseEntity<String>(getMyEmail,
+ * HttpStatus.OK); return entity; }
+ * 
+ * 
+ * 
+ * //요청파라미터 : emlSndrNo=,
+ * 
+ * @PostMapping("/writePost") public String writePost(@ModelAttribute MailVO
+ * mailVO) { int result = this.mailService.writePost(mailVO);
+ * 
+ * log.info("result : " + result);
+ * 
+ * return "redirect:/mail/send";
+ * 
+ * }
+ * 
+ * @GetMapping("/send") public String send(@ModelAttribute MailVO mailVO, Model
+ * model) { model.addAttribute("pageMain","Mail");
+ * model.addAttribute("pageDetail","send");
+ * model.addAttribute("pageName","보낸 메일함");
+ * 
+ * List<MailVO> sendList = mailService.send(mailVO); log.info("sendList : " +
+ * sendList);
+ * 
+ * model.addAttribute("data", sendList);
+ * 
+ * return "mail/send"; }
+ * 
+ * @GetMapping("/check") public String check(Model model, @ModelAttribute MailVO
+ * mailVO) { model.addAttribute("pageMain","Mail");
+ * model.addAttribute("pageDetail","check");
+ * model.addAttribute("pageName","메일 수신확인");
+ * 
+ * Object principal =
+ * SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+ * UserDetails userDetails = (UserDetails)principal; String username =
+ * userDetails.getUsername();
+ * 
+ * mailVO.setEmpNo(username);
+ * 
+ * List<MailVO> checkMailList = mailService.checkMail(mailVO);
+ * log.info("checkMailList : " + checkMailList);
+ * 
+ * model.addAttribute("data",checkMailList);
+ * 
+ * return "mail/check"; }
+ * 
+ * 
+ * 
+ * @GetMapping("/trash") public String trash(Model model) {
+ * model.addAttribute("pageMain","Mail");
+ * model.addAttribute("pageDetail","trash");
+ * model.addAttribute("pageName","휴지통");
+ * 
+ * return "mail/trash"; }
+ * 
+ * 
+ * 
+ * }
+ * 
+ */

@@ -1,0 +1,462 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<!-- -------------------------------------------------------------- -->
+<!-- Left Sidebar - style you can find in sidebar.scss  -->
+<!-- -------------------------------------------------------------- -->
+<aside class="left-sidebar">
+  <!-- Sidebar scroll-->
+  <div class="scroll-sidebar">
+    <!-- Sidebar navigation-->
+    <nav class="sidebar-nav">
+      <ul id="sidebarnav">
+        <!-- User Profile-->
+        <li>
+          <!-- User Profile-->
+          <div class="user-profile d-flex no-block dropdown mt-3">
+            <div class="user-pic">
+              <!-- 임시 프로필사진 -->
+              <img src="${pageContext.request.contextPath }/resources/images/${profile.afSave}" alt="users" class="rounded-circle" width="40"/>
+            </div>
+            <div class="user-content hide-menu ms-2">
+              <a href="#" class="" id="Userdd" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <h5 class="mb-0 user-name font-medium">
+                  KUROMI
+                  <i data-feather="chevron-down" class="feather-sm"></i>
+                </h5>
+                <span class="op-5 user-email">${SessionInfo.empEmail }</span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="Userdd">
+                <a class="dropdown-item" href="#">
+                  <i data-feather="user" class="feather-sm text-info me-1"></i> My Profile</a>
+                <a class="dropdown-item" href="#">
+                  <i data-feather="credit-card" class="feather-sm text-primary me-1"></i> My Balance</a>
+                <a class="dropdown-item" href="#">
+                  <i data-feather="mail" class="feather-sm text-success me-1"></i> Inbox</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">
+                  <i data-feather="settings" class="feather-sm text-warning me-1"></i>
+                  Account Setting
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">
+                  <i data-feather="log-out" class="feather-sm text-danger me-1"></i>
+                  Logout
+                </a>
+              </div>
+            </div>
+          </div>
+          <!-- End User Profile-->
+        </li>
+<!--         <li class="p-3 mt-2"> -->
+<!--           <a href="#" class="btn btn-block create-btn text-white no-block d-flex align-items-center"> -->
+<!--             <i data-feather="plus-square" class="feather-sm"></i> -->
+<!--             <span class="hide-menu ms-1">Create New</span> -->
+<!--           </a> -->
+<!--         </li> -->
+        <!-- User Profile-->
+        
+<!--         <li class="nav-small-cap"> -->
+<!--           <i class="mdi mdi-dots-horizontal"></i> -->
+<!--           <span class="hide-menu">Apps</span> -->
+<!--         </li> -->
+        
+        <!-- 사이드 메뉴 -->
+        <li class="sidebar-item">
+          <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/main/home" aria-expanded="false">
+            <i data-feather="home" class="feather-icon"></i>
+            <span class="hide-menu">홈</span>
+         </a>
+        <li class="sidebar-item">
+<!--           <a class="sidebar-link waves-effect waves-dark sidebar-link" href="" aria-expanded="false"> -->
+<!--             <i data-feather="layout" class="feather-icon"></i> -->
+<!--             <span class="hide-menu">근태관리</span> -->
+<!--           </a> -->
+          <a class="sidebar-link has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
+            <i data-feather="lock" class="feather-icon"></i>
+            <span class="hide-menu">근태관리</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
+            <i data-feather="grid" class="feather-icon"></i>
+            <span class="hide-menu">업무 </span>
+          </a>
+          <ul aria-expanded="false" class="collapse first-level">
+            <li class="sidebar-item">
+              <a href="widgets-feeds.html" class="sidebar-link">
+                <i class="mdi mdi-account-box"></i>
+                <span class="hide-menu"> Feed Widgets </span>
+             </a>
+            </li>
+            <li class="sidebar-item">
+              <a href="widgets-apps.html" class="sidebar-link">
+                <i class="mdi mdi-comment-processing-outline"></i>
+                <span class="hide-menu"> Apps Widgets </span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a href="widgets-data.html" class="sidebar-link">
+                <i class="mdi mdi-calendar"></i>
+                <span class="hide-menu"> Data Widgets </span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a href="widgets-charts.html" class="sidebar-link">
+                <i class="mdi mdi-bulletin-board"></i>
+                <span class="hide-menu"> Charts Widgets</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
+            <i data-feather="mail" class="feather-icon"></i>
+            <span class="hide-menu">메일 </span>
+          </a>
+          <ul aria-expanded="false" class="collapse first-level">
+            <li class="sidebar-item">
+              <a href="#" class="sidebar-link">
+                <i class="mdi mdi-email"></i>
+                <span class="hide-menu"> Email </span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a href="#" class="sidebar-link">
+                <i class="mdi mdi-email-alert"></i>
+                <span class="hide-menu"> Email Detail </span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a href="#" class="sidebar-link">
+                <i class="mdi mdi-email-secure"></i>
+                <span class="hide-menu"> Email Compose </span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/approval/home" aria-expanded="false">
+            <i data-feather="edit" class="feather-icon"></i>
+            <span class="hide-menu">전자결재</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
+            <i data-feather="list" class="feather-icon"></i>
+            <span class="hide-menu">게시판</span>
+          </a>
+          <ul aria-expanded="false" class="collapse first-level">
+            <li class="sidebar-item">
+              <a href="#" class="sidebar-link">
+                <i class="mdi mdi-checkbox-marked-outline"></i>
+                <span class="hide-menu">공지사항</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a href="/free/home" class="sidebar-link">
+                <i class="mdi mdi-format-list-bulleted-type"></i>
+                <span class="hide-menu">자유게시판</span>
+              </a>
+            </li>
+          </ul>
+        </li>        
+        <li class="sidebar-item">
+          <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/approval/home" aria-expanded="false">
+            <i data-feather="monitor" class="feather-icon"></i>
+            <span class="hide-menu">Works</span>
+          </a>
+        </li>
+
+        <li class="sidebar-item">
+          <a class="sidebar-link waves-effect waves-dark sidebar-link" href="" aria-expanded="false">
+            <i data-feather="phone" class="feather-icon"></i>
+            <span class="hide-menu">주소록</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/sch/home" aria-expanded="false">
+            <i data-feather="calendar" class="feather-icon"></i>
+            <span class="hide-menu">일정</span>
+          </a>
+        </li>
+<!--         <li class="sidebar-item"> -->
+<!--           <a class="sidebar-link waves-effect waves-dark sidebar-link" href="" aria-expanded="false"> -->
+<!--             <i data-feather="message-circle" class="feather-icon"></i> -->
+<!--             <span class="hide-menu">Chat Apps</span> -->
+<!--           </a> -->
+<!--         </li> -->
+        <li class="sidebar-item">
+          <a class="sidebar-link waves-effect waves-dark sidebar-link" href="" aria-expanded="false">
+            <i data-feather="check-circle" class="feather-icon"></i>
+            <span class="hide-menu">Todo</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link waves-effect waves-dark sidebar-link" href="" aria-expanded="false">
+            <i data-feather="book" class="feather-icon"></i>
+            <span class="hide-menu">Notes</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link waves-effect waves-dark sidebar-link" href="" aria-expanded="false">
+            <i data-feather="file-text" class="feather-icon"></i>
+            <span class="hide-menu">Invoice</span>
+          </a>
+        </li>
+        
+        <li class="nav-small-cap">
+          <i class="mdi mdi-dots-horizontal"></i>
+          <span class="hide-menu">Personal</span>
+        </li>
+        <li class="sidebar-item">
+          <a
+            class="sidebar-link has-arrow waves-effect waves-dark"
+            href="#"
+            aria-expanded="false"
+            ><i data-feather="home" class="feather-icon"></i
+            ><span class="hide-menu">Dashboard </span></a
+          >
+          <ul aria-expanded="false" class="collapse first-level">
+            <li class="sidebar-item">
+              <a href="" class="sidebar-link"
+                ><i class="mdi mdi-adjust"></i><span class="hide-menu"> Classic </span></a
+              >
+            </li>
+            <li class="sidebar-item">
+              <a href="" class="sidebar-link"
+                ><i class="mdi mdi-adjust"></i><span class="hide-menu"> Analytical </span></a
+              >
+            </li>
+            <li class="sidebar-item">
+              <a href="" class="sidebar-link"
+                ><i class="mdi mdi-adjust"></i
+                ><span class="hide-menu"> Cryptocurrency </span></a
+              >
+            </li>
+            <li class="sidebar-item">
+              <a href="" class="sidebar-link"
+                ><i class="mdi mdi-adjust"></i><span class="hide-menu"> Overview </span></a
+              >
+            </li>
+            <li class="sidebar-item">
+              <a href="" class="sidebar-link"
+                ><i class="mdi mdi-adjust"></i><span class="hide-menu"> E-Commerce </span></a
+              >
+            </li>
+            <li class="sidebar-item">
+              <a href="" class="sidebar-link"
+                ><i class="mdi mdi-adjust"></i><span class="hide-menu"> Sales </span></a
+              >
+            </li>
+            <li class="sidebar-item">
+              <a href="" class="sidebar-link"
+                ><i class="mdi mdi-adjust"></i><span class="hide-menu"> General </span></a
+              >
+            </li>
+            <li class="sidebar-item">
+              <a href="" class="sidebar-link"
+                ><i class="mdi mdi-adjust"></i><span class="hide-menu"> Trendy </span></a
+              >
+            </li>
+            <li class="sidebar-item">
+              <a href="" class="sidebar-link"
+                ><i class="mdi mdi-adjust"></i><span class="hide-menu"> Campaign </span></a
+              >
+            </li>
+            <li class="sidebar-item">
+              <a href="" class="sidebar-link"
+                ><i class="mdi mdi-adjust"></i><span class="hide-menu"> Modern </span></a
+              >
+            </li>
+          </ul>
+        </li>
+        <li class="sidebar-item">
+          <a
+            class="sidebar-link has-arrow waves-effect waves-dark"
+            href="#"
+            aria-expanded="false"
+            ><i data-feather="sidebar" class="feather-icon"></i
+            ><span class="hide-menu">Sidebar Type </span></a
+          >
+          <ul aria-expanded="false" class="collapse first-level">
+            <li class="sidebar-item">
+              <a href="" class="sidebar-link"
+                ><i class="mdi mdi-view-quilt"></i
+                ><span class="hide-menu"> Minisidebar </span></a
+              >
+            </li>
+            <li class="sidebar-item">
+              <a href="sidebar-type-iconsidebar.html" class="sidebar-link"
+                ><i class="mdi mdi-view-parallel"></i
+                ><span class="hide-menu"> Icon Sidebar </span></a
+              >
+            </li>
+            <li class="sidebar-item">
+              <a href="sidebar-type-overlaysidebar.html" class="sidebar-link"
+                ><i class="mdi mdi-view-day"></i
+                ><span class="hide-menu"> Overlay Sidebar </span></a
+              >
+            </li>
+            <li class="sidebar-item">
+              <a href="sidebar-type-fullsidebar.html" class="sidebar-link"
+                ><i class="mdi mdi-view-array"></i
+                ><span class="hide-menu"> Full Sidebar </span></a
+              >
+            </li>
+            <li class="sidebar-item">
+              <a href="sidebar-type-horizontalsidebar.html" class="sidebar-link"
+                ><i class="mdi mdi-view-module"></i
+                ><span class="hide-menu"> Horizontal Sidebar </span></a
+              >
+            </li>
+          </ul>
+        </li>
+        <li class="sidebar-item">
+          <a
+            class="sidebar-link has-arrow waves-effect waves-dark"
+            href="#"
+            aria-expanded="false"
+            ><i data-feather="clipboard" class="feather-icon"></i
+            ><span class="hide-menu">Page Layouts </span></a
+          >
+          <ul aria-expanded="false" class="collapse first-level">
+            <li class="sidebar-item">
+              <a href="layout-inner-fixed-left-sidebar.html" class="sidebar-link"
+                ><i class="mdi mdi-format-align-left"></i
+                ><span class="hide-menu"> Inner Fixed Left Sidebar </span></a
+              >
+            </li>
+            <li class="sidebar-item">
+              <a href="layout-inner-fixed-right-sidebar.html" class="sidebar-link"
+                ><i class="mdi mdi-format-align-right"></i
+                ><span class="hide-menu"> Inner Fixed Right Sidebar </span></a
+              >
+            </li>
+            <li class="sidebar-item">
+              <a href="layout-inner-left-sidebar.html" class="sidebar-link"
+                ><i class="mdi mdi-format-float-left"></i
+                ><span class="hide-menu"> Inner Left Sidebar </span></a
+              >
+            </li>
+            <li class="sidebar-item">
+              <a href="layout-inner-right-sidebar.html" class="sidebar-link"
+                ><i class="mdi mdi-format-float-right"></i
+                ><span class="hide-menu"> Inner Right Sidebar </span></a
+              >
+            </li>
+            <li class="sidebar-item">
+              <a href="page-layout-fixed-header.html" class="sidebar-link"
+                ><i class="mdi mdi-view-quilt"></i
+                ><span class="hide-menu"> Fixed Header </span></a
+              >
+            </li>
+            <li class="sidebar-item">
+              <a href="page-layout-fixed-sidebar.html" class="sidebar-link"
+                ><i class="mdi mdi-view-parallel"></i
+                ><span class="hide-menu"> Fixed Sidebar </span></a
+              >
+            </li>
+            <li class="sidebar-item">
+              <a href="page-layout-fixed-header-sidebar.html" class="sidebar-link"
+                ><i class="mdi mdi-view-column"></i
+                ><span class="hide-menu"> Fixed Header &amp; Sidebar </span></a
+              >
+            </li>
+            <li class="sidebar-item">
+              <a href="page-layout-boxed-layout.html" class="sidebar-link"
+                ><i class="mdi mdi-view-carousel"></i
+                ><span class="hide-menu"> Box Layout </span></a
+              >
+            </li>
+          </ul>
+        </li>
+        
+        <li class="sidebar-item">
+          <a
+            class="sidebar-link has-arrow waves-effect waves-dark"
+            href="#"
+            aria-expanded="false"
+            ><i data-feather="copy" class="feather-icon"></i
+            ><span class="hide-menu">Cards</span></a
+          >
+          <ul aria-expanded="false" class="collapse first-level">
+            <li class="sidebar-item">
+              <a href="ui-cards.html" class="sidebar-link"
+                ><i class="mdi mdi-layers"></i><span class="hide-menu"> Basic Cards</span></a
+              >
+            </li>
+            <li class="sidebar-item">
+              <a href="ui-card-customs.html" class="sidebar-link"
+                ><i class="mdi mdi-credit-card-scan"></i
+                ><span class="hide-menu">Custom Cards</span></a
+              >
+            </li>
+            <li class="sidebar-item">
+              <a href="ui-card-weather.html" class="sidebar-link"
+                ><i class="mdi mdi-weather-fog"></i
+                ><span class="hide-menu">Weather Cards</span></a
+              >
+            </li>
+            <li class="sidebar-item">
+              <a href="ui-card-draggable.html" class="sidebar-link"
+                ><i class="mdi mdi-bandcamp"></i
+                ><span class="hide-menu">Draggable Cards</span></a
+              >
+            </li>
+          </ul>
+        </li>
+        <li class="sidebar-item">
+          <a
+            class="sidebar-link has-arrow waves-effect waves-dark"
+            href="#"
+            aria-expanded="false"
+            ><i data-feather="hard-drive" class="feather-icon"></i
+            ><span class="hide-menu">Components</span></a
+          >
+          <ul aria-expanded="false" class="collapse first-level">
+            <li class="sidebar-item">
+              <a href="component-sweetalert.html" class="sidebar-link"
+                ><i class="mdi mdi-layers"></i><span class="hide-menu"> Sweet Alert</span></a
+              >
+            </li>
+            <li class="sidebar-item">
+              <a href="component-nestable.html" class="sidebar-link"
+                ><i class="mdi mdi-credit-card-scan"></i
+                ><span class="hide-menu">Nestable</span></a
+              >
+            </li>
+            <li class="sidebar-item">
+              <a href="component-noui-slider.html" class="sidebar-link"
+                ><i class="mdi mdi-weather-fog"></i
+                ><span class="hide-menu">Noui slider</span></a
+              >
+            </li>
+            <li class="sidebar-item">
+              <a href="component-rating.html" class="sidebar-link"
+                ><i class="mdi mdi-bandcamp"></i><span class="hide-menu">Rating</span></a
+              >
+            </li>
+            <li class="sidebar-item">
+              <a href="component-toastr.html" class="sidebar-link"
+                ><i class="mdi mdi-poll"></i><span class="hide-menu">Toastr</span></a
+              >
+            </li>
+          </ul>
+        </li>
+        
+        
+      </ul>
+    </nav>
+    <!-- End Sidebar navigation -->
+  </div>
+  <!-- End Sidebar scroll-->
+</aside>
+<!-- -------------------------------------------------------------- -->
+<!-- End Left Sidebar - style you can find in sidebar.scss  -->
+<!-- -------------------------------------------------------------- -->
+
+
+
+
+

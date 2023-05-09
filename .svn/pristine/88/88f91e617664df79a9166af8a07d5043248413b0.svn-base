@@ -1,0 +1,36 @@
+package kr.or.ddit.message.service;
+
+import java.util.List;
+
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Service;
+
+import kr.or.ddit.free.service.FreeServiceImpl;
+import kr.or.ddit.mapper.EmployeeMapper;
+import kr.or.ddit.mapper.MessageMapper;
+import kr.or.ddit.message.vo.MessageVO;
+import lombok.extern.slf4j.Slf4j;
+
+
+@Slf4j
+@Service
+public class MessageServiceImpl implements IMessageService {
+
+	@Inject
+	private MessageMapper messageMapper;
+	
+	@Inject
+	private EmployeeMapper empMapper;
+	
+	
+	
+	
+	@Override
+	public List<MessageVO> getMessageList() {
+
+		
+		return messageMapper.getMessageList();
+	}
+
+}

@@ -1,0 +1,82 @@
+package kr.or.ddit.message.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Service;
+
+import kr.or.ddit.attfile.vo.AttFileVO;
+import kr.or.ddit.employee.vo.EmployeeVO;
+import kr.or.ddit.mapper.AttfileMapper;
+import kr.or.ddit.mapper.EmployeeMapper;
+import kr.or.ddit.mapper.MessageMapper;
+import kr.or.ddit.message.vo.MessageVO;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@Service
+public class MessageServiceImpl implements IMessageService {
+
+	@Inject
+	private MessageMapper messageMapper;
+
+	@Inject
+	private EmployeeMapper empMapper;
+	
+	
+	@Inject 
+	private AttfileMapper afMapper;
+	 
+
+	
+	
+	@Override
+	public List<MessageVO> getMessageList() {
+
+		return messageMapper.getMessageList();
+	}
+
+	@Override
+	public MessageVO getMessage(String mesCode) {
+
+		return messageMapper.getMessage(mesCode);
+	}
+
+	@Override
+	public List<EmployeeVO> getEmpByMsgList(List<MessageVO> messageList) {
+
+		List<EmployeeVO> empList = new ArrayList<EmployeeVO>();
+
+		for (int i = 0; i < messageList.size(); i++) {
+			EmployeeVO empVO = new EmployeeVO();
+
+			String empNo = messageList.get(i).getEmpNo();
+			empVO.setEmpNo(empNo);
+
+			empVO = empMapper.getEmp(empVO);
+			empList.add(empVO);
+		}
+		return empList;
+
+	}
+
+	@Override
+	public EmployeeVO getEmpByMessage(MessageVO messageVO) {
+		
+		EmployeeVO empVO = new EmployeeVO();
+		
+		empVO.setEmpNo(messageVO.getEmpNo());
+		
+		return empMapper.getEmp(empVO);
+	}
+
+
+	
+	  @Override public AttFileVO getAf(String afTcode) {
+	  
+	  return afMapper.getAf(afTcode); }
+	 
+
+}

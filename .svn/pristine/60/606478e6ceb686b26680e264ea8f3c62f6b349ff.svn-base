@@ -1,0 +1,115 @@
+package kr.or.ddit.approval.controller;
+
+import java.util.List;
+import java.util.Map;
+
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import kr.or.ddit.approval.service.IAppService;
+import kr.or.ddit.approval.vo.ApFormVO;
+import kr.or.ddit.approval.vo.AppVO;
+import kr.or.ddit.approval.vo.RecVO;
+import kr.or.ddit.approval.vo.VacationFormVO;
+import kr.or.ddit.approval.vo.VacationVO;
+import kr.or.ddit.employee.vo.EmployeeVO;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@Controller
+@RequestMapping("/approval")
+public class ApprovalMainController {
+
+	@Inject
+	private IAppService appService;
+	
+	@GetMapping("/home")
+	public String home(Model model) {
+		
+//		List<AppVO> freeList = appService.list();
+//		model.addAttribute("List", freeList);
+		return "approval/home";
+	}
+	
+	@GetMapping("/order")
+	public String order() {
+		return "approval/order";
+	}
+
+	@GetMapping("/vacation")
+	public String vacation() {
+		return "approval/vacation";
+	}
+	
+	@PostMapping("/vacation/insert")
+	public String vacationInsert(VacationFormVO vacation, Model model) throws Exception {
+		appService.vacationInsert(vacation);
+		model.addAttribute("vacation", vacation);
+		return "approval/home";
+	}
+	
+	@PostMapping(value="/vacation/pwcheck",produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public ResponseEntity<String> pwCheck(@RequestBody Map<String, String> Mpassword, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		EmployeeVO empVO = (EmployeeVO)session.getAttribute("SessionInfo");
+		String pw = empVO.getEmpPw();
+		
+		if (pw.equals(Mpassword.get("Mpassword"))) {
+			log.info("Mpassword:ok");
+			return new ResponseEntity<String>("success",HttpStatus.OK);
+		}
+		
+		log.info("Mpassword: "+ Mpassword.get("Mpassword"));
+		log.info("Mpassword:fail");
+		return new ResponseEntity<String>("fail",HttpStatus.OK);
+		
+//		return "나영짱" + Mpassword.get("Mpassword");
+	}
+	
+
+	@GetMapping("/bisOrd")
+	public String apFormDetail(String apfName, Model model) {
+		log.info("체크: "+ apfName);
+		
+		ApFormVO form = appService.selectForm(apfName);
+		log.info("체크2: "+ form);
+		
+		model.addAttribute("apform", form);
+		return "approval/bisOrd";
+	}
+	
+	@GetMapping(value="/recruit")
+	public String recruitForm(RecVO rec, Model model) {
+		model.addAttribute("RecVO", rec);
+		return "approval/recruit";
+	}
+	
+	@PostMapping(value = "/recruit")
+	public String recruit(@Validated RecVO rec, BindingResult result, Model model) throws Exception {
+		appService.register(rec);
+		
+		if(rec.getRec_code().length() > 0) {
+			return "register:/approval/detail?RecDode=" + rec.getRec_code();
+		}
+		model.addAttribute("msg", "등록성공");
+		return "approval/success";
+	}
+	
+	
+}

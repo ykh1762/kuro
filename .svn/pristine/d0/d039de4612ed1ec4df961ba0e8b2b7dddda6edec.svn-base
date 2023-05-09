@@ -1,0 +1,9 @@
+package kr.or.ddit.mapper;
+
+import kr.or.ddit.timeline.vo.TimelineVO;
+
+public interface TimelineMapper {
+
+	public void insertTime(TimelineVO timeVO);
+
+}

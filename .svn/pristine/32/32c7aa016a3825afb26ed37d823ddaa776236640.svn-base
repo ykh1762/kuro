@@ -1,0 +1,11 @@
+package kr.or.ddit.free.service;
+
+import java.util.List;
+
+import kr.or.ddit.free.vo.FreeVO;
+
+public interface IFreeService {
+
+	public List<FreeVO> getFreeList();
+
+}

@@ -1,0 +1,92 @@
+package kr.or.ddit.approval.service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+
+import kr.or.ddit.approval.vo.ApFormVO;
+import kr.or.ddit.approval.vo.AplineVO;
+import kr.or.ddit.approval.vo.AppVO;
+import kr.or.ddit.approval.vo.RecVO;
+import kr.or.ddit.approval.vo.RecruitFormVO;
+import kr.or.ddit.approval.vo.VacationFormVO;
+import kr.or.ddit.approval.vo.VacationVO;
+import kr.or.ddit.employee.vo.EmployeeVO;
+import kr.or.ddit.mapper.AppMapper;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@Service
+public class AppServiceImpl implements IAppService {
+
+	@Inject
+	private AppMapper appMapper;
+	
+	
+
+	@Override
+	public void register(RecVO rec)throws Exception{
+		appMapper.create(rec);
+	}
+
+//	@Override
+//	public ApFormVO selectForm(String text) {
+//		ApFormVO form = appMapper.selectForm(text);
+//		return form;
+//	}
+
+
+
+	@Override
+	public ApFormVO selectForm(String apfName) {
+		return appMapper.selectForm(apfName);
+	}
+
+	@Override
+	public List<AppVO> getAppList() throws Exception {
+		return appMapper.getAppList();
+	}
+
+	@Override
+	public List<AppVO> getAppListByEmpNo(EmployeeVO empVO) throws Exception {
+		return appMapper.getAppListByEmpNo(empVO);
+	}
+
+	@Override
+	public List<AppVO> getAppEndListByEmpNo(EmployeeVO empVO) throws Exception {
+		return appMapper.getAppEndListByEmpNo(empVO);
+	}
+
+	@Override
+	public List<AplineVO> getAppLineListByEmpNo(EmployeeVO empVO) throws Exception {
+	    return appMapper.getAppLineListByEmpNo(empVO);
+	}
+	
+	@Override
+	public void vacationInsert(VacationFormVO vacation) throws Exception {
+		log.debug("va >> "+vacation);
+		appMapper.approvalInsert(vacation);
+		appMapper.vacationInsert(vacation);
+		appMapper.appLine1Insert(vacation);
+		appMapper.appLine2Insert(vacation);
+		appMapper.appLine3Insert(vacation);
+		
+	}
+	
+	@Override
+	public void recruitInsert(RecruitFormVO rec) throws Exception {
+		appMapper.approvalRecInsert(rec);
+		appMapper.recruitInsert(rec);
+		appMapper.appLine1RecInsert(rec);
+		appMapper.appLine2RecInsert(rec);
+		appMapper.appLine3RecInsert(rec);
+	}
+
+}

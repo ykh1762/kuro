@@ -1,0 +1,40 @@
+package kr.or.ddit.board.controller;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@Controller
+@RequestMapping("/board")
+public class BoardController {
+	
+//	@Inject
+//	private IBoardService boardService;
+
+	@GetMapping("/home")
+	public String home(Model model, HttpServletRequest req) {
+		
+//		// 사원의 근무 리스트
+//		HttpSession session = req.getSession();
+//		
+//		if (session.getAttribute("SessionInfo") == null) {  
+//			// SessionInfo가 없으면 로그인 페이지로 이동
+//			return "conn/login";
+//		}
+		
+//		model.addAttribute("jsonWorkList", jsonWorkList);
+		
+		return "board/home";
+	}	
+	
+	
+	
+	
+	
+}

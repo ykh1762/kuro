@@ -1,0 +1,26 @@
+package kr.or.ddit.mapper;
+
+import java.util.List;
+
+import kr.or.ddit.approval.vo.ApFormVO;
+import kr.or.ddit.approval.vo.AplineVO;
+import kr.or.ddit.approval.vo.AppVO;
+import kr.or.ddit.approval.vo.RecVO;
+import kr.or.ddit.approval.vo.VacationFormVO;
+import kr.or.ddit.employee.vo.EmployeeVO;
+
+public interface AppMapper {
+
+	public ApFormVO selectForm(String apfName);
+	public void create(RecVO rec) throws Exception;
+	public void vacationInsert(VacationFormVO vacation) throws Exception;
+	public void approvalInsert(VacationFormVO vacationVO);
+	public void appLine1Insert(VacationFormVO vacationVO);
+	public void appLine2Insert(VacationFormVO vacationVO);
+	public void appLine3Insert(VacationFormVO vacationVO);
+	public List<AppVO> getAppList() throws Exception;
+	public List<AppVO> getAppListByEmpNo(EmployeeVO empVO) throws Exception;
+	public List<AppVO> getAppEndListByEmpNo(EmployeeVO empVO) throws Exception;
+	public List<AplineVO> getAppLineListByEmpNo(EmployeeVO empVO) throws Exception;
+
+}

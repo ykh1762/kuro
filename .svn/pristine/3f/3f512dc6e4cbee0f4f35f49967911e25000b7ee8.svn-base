@@ -1,0 +1,21 @@
+package kr.or.ddit.mapper;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
+
+import kr.or.ddit.employee.vo.EmployeeVO;
+
+public interface EmployeeMapper {
+
+	public EmployeeVO getEmp(EmployeeVO empVO);
+
+	public EmployeeVO loginCheck(EmployeeVO empVO);
+
+	public List<EmployeeVO> list();
+
+	public EmployeeVO selectMember(String id);
+
+	public List<EmployeeVO> getEmpList();
+
+}

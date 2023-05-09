@@ -1,0 +1,29 @@
+package kr.or.ddit.attfile.vo;
+
+import java.util.Date;
+
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
+@Data
+public class AttFileVO {
+
+	// VO에서 낙타표기법이 제대로 안되어있으면 에러 발생 예) aFNo
+	private int afNo;
+	private int accNo;
+	private int assNo;
+	private int appNo;
+	private int mailNo;
+	private int chatNo;
+	private int empNo;
+	private int cloNo;
+	private int postNo;
+	private int freeNo;
+	private int notNo;
+	private Date afDate;
+	private String afType;
+	private String afSave;
+	private String tCode;
+	
+}

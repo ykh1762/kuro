@@ -1,0 +1,13 @@
+package kr.or.ddit.mapper;
+
+import java.util.List;
+
+import kr.or.ddit.comment.vo.CommentVO;
+
+public interface CommentMapper {
+
+	public void insertComm(CommentVO commVO);
+
+	public List<CommentVO> list();
+
+}

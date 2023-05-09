@@ -1,0 +1,34 @@
+package kr.or.ddit.mail.service;
+
+
+import java.util.List;
+
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Service;
+
+import kr.or.ddit.mail.vo.MailVO;
+import kr.or.ddit.mapper.EmployeeMapper;
+import kr.or.ddit.mapper.MailMapper;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@Service
+public class MailServiceImpl implements IMailService{
+	
+	@Inject
+	private MailMapper mailMapper;
+	
+	@Inject
+	private EmployeeMapper empMapper;
+
+	@Override
+	public List<MailVO> selectReceiveList(String empNo) {
+		
+		return mailMapper.selectReceiveList(empNo);
+	}
+	
+
+	
+
+}

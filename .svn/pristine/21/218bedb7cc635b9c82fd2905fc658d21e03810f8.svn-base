@@ -1,0 +1,284 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+ <div class="email-app">
+          <div class="left-part">
+            <a
+              class="ri-menu-fill ri-close-fill btn btn-success show-left-part d-block d-md-none"
+              href="javascript:void(0)"
+            ></a>
+            <div class="scrollable" style="height: 100%">
+              <div class="p-3">
+                <a
+                  id="compose_mail"
+                  class="waves-effect waves-light btn btn-danger d-block"
+                  href="/message/write"
+                  >쪽지보내기</a
+                >
+              </div>
+              <div class="divider"></div>
+              <ul class="list-group">
+               
+                <li class="list-group-item">
+                  <a href="/message/home" class="list-group-item-action d-flex align-items-center">
+                  	<i data-feather="inbox" class="feather-sm fill-white me-2"></i>
+              			받은쪽지
+                    <span class="badge bg-light-success text-success px-3 rounded-pill font-medium ms-auto">6</span>
+                  </a>
+                </li>
+                <li class="list-group-item">
+                  <a href="/message/list2" class="list-group-item-action d-flex align-items-center">
+                  	<i data-feather="send" class="feather-sm fill-white me-2"></i>
+                    	보낸쪽지
+                    <span class="badge bg-light-danger text-danger px-3 rounded-pill ms-auto">3</span>
+                  </a>
+                </li>
+                <li class="list-group-item">
+                  <a href="/message/store" class="list-group-item-action">
+                  	<i data-feather="star" class="feather-sm fill-white me-2"></i>
+                    	보관쪽지
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- -------------------------------------------------------------- -->
+          <!-- Right Part -->
+          <!-- -------------------------------------------------------------- -->
+          <div class="right-part mail-list bg-white overflow-auto">
+		<div class="row">
+			<div class="col-md-12" style="width:800px; height:500px;">
+				<div class="card">
+					<div class="border-bottom title-part-padding" style="width: ; height: ;">
+						<h4 class="card-title mb-0">쪽지보관함</h4>
+					</div>
+					
+					<div class="bg-light p-3 d-md-flex align-items-center">
+			<div class="btn-group mt-1 mb-1">
+				<div class="form-check">
+					<input type="checkbox" class="form-check-input sl-all" id="cstall">
+					<label class="form-check-label" for="cstall">Check All</label>
+				</div>
+			</div>
+			<div class="ms-auto">
+				<div class="btn-group me-2" role="group" aria-label="Button group with nested dropdown">
+					<button type="button" class="btn btn-outline-danger" id="delBtn">삭제</button>
+					<button type="button" class="btn btn-outline-secondary">보관</button>
+					<button type="button" class="btn btn-outline-dark" onclick="location.href = '/message/write' ">답장</button>
+
+				</div>
+				<div class="btn-group me-2" role="group" aria-label="Button group with nested dropdown">
+
+
+				</div>
+			</div>
+		</div>s
+					
+					<div class="card-body" style="width:800px; height:500px;">
+
+
+						<!-- toolbar start -->
+						<div class="fixed-table-toolbar">
+						
+						<div class="pull-right search" style="display: inline-block;">
+								<input class="form-control" type="text" id="input" placeholder="Search">
+							</div>
+						
+							
+							<div class="columns columns-right btn-group pull-right"
+								style="display: inline-block;">
+								<button class="btn btn-default" type="button"
+									name="paginationSwitch" aria-label="pagination Switch"
+									title="Hide/Show pagination">
+									<i class="glyphicon far fa-caret-square-down"></i>보관
+								</button>
+								<button class="btn btn-default" type="button" name="refresh"
+									aria-label="refresh" title="Refresh" onclick="location.href='/message/write';">
+									답장
+								</button>
+								
+							</div>
+							
+							<div class="bs-bars pull-left" style="display: inline-block;">
+								<div id="toolbar">
+									<button id="remove" class="btn btn-danger" disabled="">
+										<i class="ri-delete-bin-line fs-5 align-middle"></i> Delete
+									</button>
+								</div>
+							</div>
+							
+							
+						
+						</div>
+						<!-- toolbar -->
+
+						<table class="table table-hover" id="myTable" style="width: 536.667px;">
+							<thead>
+								<tr>
+
+									<th class="bs-checkbox "
+										style="text-align: center; vertical-align: middle; width: 36px;"
+										rowspan="2" data-field="state"><div class="th-inner ">
+											<input name="btSelectAll" type="checkbox">
+										</div>
+										</th>
+									<th style="text-align: center; vertical-align: middle;"
+										rowspan="2" data-field="id"><div
+											class="th-inner sortable both">보낸사람</div>
+										<div class="fht-cell" style="width: 100.239px;"></div></th>
+								
+								</tr>
+								<tr>
+									<th style="text-align: center;" data-field="name"
+										data-not-first-th=""><div class="th-inner sortable both">내용</div>
+										<div class="fht-cell" style="width: 140px;"></div></th>
+									<th style="text-align: center;" data-field="price"><div
+											class="th-inner sortable both">날짜</div>
+										<div class="fht-cell" style="width: 120.739px;"></div></th>
+									<th style="text-align: center;" data-field="operate"><div
+											class="th-inner "></div>
+										<div class="fht-cell" style="width: 119.374px;"></div></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr data-index="0">
+
+									<td class="bs-checkbox "><input data-index="0"
+										name="btSelectItem" type="checkbox" value="0"></td>
+									<td style="text-align: center; vertical-align: middle;">심심심</td>
+									<td style="text-align: center;">너가 그랬어?</td>
+									<td style="text-align: center;">Date</td>
+									<td style="text-align: center;"><a class="remove"
+										href="javascript:void(0)" title="Remove"><i
+											class="fas fa-trash"></i></a></td>
+								</tr>
+								<tr data-index="0">
+
+									<td class="bs-checkbox "><input data-index="0"
+										name="btSelectItem" type="checkbox" value="0"></td>
+									<td style="text-align: center; vertical-align: middle;">효효효</td>
+									<td style="text-align: center;">무슨일이야</td>
+									<td style="text-align: center;">Date</td>
+									<td style="text-align: center;"><a class="remove"
+										href="javascript:void(0)" title="Remove"><i
+											class="fas fa-trash"></i></a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<div class="fixed-table-pagination" style="">
+
+						<div class="pull-right pagination">
+							<ul class="pagination">
+								<li class="page-item page-pre"><a class="page-link"
+									href="#">‹</a></li>
+								<li class="page-item active"><a class="page-link" href="#">1</a></li>
+								<li class="page-item"><a class="page-link" href="#">2</a></li>
+								<li class="page-item"><a class="page-link" href="#">3</a></li>
+								<li class="page-item"><a class="page-link" href="#">4</a></li>
+								<li class="page-item"><a class="page-link" href="#">5</a></li>
+								<li class="page-item page-last-separator disabled"><a
+									class="page-link" href="#">...</a></li>
+								<li class="page-item page-last"><a class="page-link"
+									href="#">16</a></li>
+								<li class="page-item page-next"><a class="page-link"
+									href="#">›</a></li>
+							</ul>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+          <!-- -------------------------------------------------------------- -->
+          <!-- Right Part  Mail Compose -->
+          <!-- -------------------------------------------------------------- -->
+          <div class="right-part mail-compose bg-white overflow-auto" style="display: none">
+            <div class="p-4 border-bottom">
+              <div class="d-flex align-items-center">
+                <div>
+                  <h4>Compose</h4>
+                  <span>create new message</span>
+                </div>
+                <div class="ms-auto">
+                  <button id="cancel_compose" class="btn btn-dark">Back</button>
+                </div>
+              </div>
+            </div>
+            <!-- Action part -->
+            <!-- Button group part -->
+            <div class="card-body">
+              <form>
+                <div class="mb-3">
+                  <input
+                    type="email"
+                    id="example-email"
+                    name="example-email"
+                    class="form-control"
+                    placeholder="To"
+                  />
+                </div>
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    id="example-subject"
+                    name="example-subject"
+                    class="form-control"
+                    placeholder="Subject"
+                  />
+                </div>
+                <div id="summernote"></div>
+                <h4>Attachment</h4>
+                <div class="dropzone" id="dzid">
+                  <div class="fallback">
+                    <input name="file" type="file" multiple />
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-success mt-3">
+                  <i class="ri-mail-line align-middle"></i> Send
+                </button>
+                <button type="submit" class="btn btn-dark mt-3">Discard</button>
+              </form>
+              <!-- Action part -->
+            </div>
+          </div>
+        </div>
+   
+<script type="text/javascript">        
+// input 요소 가져오기
+const input = document.getElementById("input");
+
+// input 값이 변경될 때마다 이벤트 처리하기
+input.addEventListener("input", function() {
+  // 입력한 값을 소문자로 변환하여 검색어로 사용
+  const searchText = this.value.toLowerCase();
+
+  // 테이블 요소 가져오기
+  const table = document.getElementById("myTable");
+
+  // 모든 행(row)을 가져와서 검색하기
+  const rows = table.getElementsByTagName("tr");
+  for (let i = 0; i < rows.length; i++) {
+    const cells = rows[i].getElementsByTagName("td");
+    let found = false;
+
+    // 각 셀(cell)에서 검색어를 찾기
+    for (let j = 0; j < cells.length; j++) {
+      const cellText = cells[j].innerText.toLowerCase();
+      if (cellText.includes(searchText)) {
+        found = true;
+        break;
+      }
+    }
+
+    // 검색어가 포함된 셀이 없으면 해당 행(row)를 숨기기
+    if (!found) {
+      rows[i].style.display = "none";
+    } else {
+      rows[i].style.display = "";
+    }
+  }
+});
+</script>

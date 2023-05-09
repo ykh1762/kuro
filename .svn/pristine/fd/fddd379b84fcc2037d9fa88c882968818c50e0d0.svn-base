@@ -1,0 +1,17 @@
+package kr.or.ddit.main.service;
+
+import kr.or.ddit.attfile.vo.AttFileVO;
+import kr.or.ddit.dep.vo.DepVO;
+import kr.or.ddit.employee.vo.EmployeeVO;
+
+public interface ILoginService {
+
+	public EmployeeVO getEmp(EmployeeVO empVO);
+
+	public EmployeeVO loginCheck(EmployeeVO empVO);
+
+	public AttFileVO getAf(String afTcode);
+
+	public DepVO getDep(String depCode);
+
+}

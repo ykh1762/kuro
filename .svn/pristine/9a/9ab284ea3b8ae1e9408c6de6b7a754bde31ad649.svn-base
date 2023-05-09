@@ -1,0 +1,51 @@
+package kr.or.ddit.comment.controller;
+
+import java.util.List;
+
+import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import kr.or.ddit.comment.service.ICommentService;
+import kr.or.ddit.comment.vo.CommentVO;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@Controller
+@RequestMapping("/comment")
+public class CommentController {
+
+	@Inject
+	private ICommentService commService;
+
+	@RequestMapping(value = "/insert", method = RequestMethod.GET)
+	public String CommentInsertForm(CommentVO commVO, Model model) {
+		model.addAttribute("commVO",commVO);
+		return "";
+	}
+	
+	@RequestMapping(value = "/insert", method =  RequestMethod.POST)
+	public String CommentInsert(@Validated CommentVO commVO, Model model) throws Exception{
+		commService.insert(commVO);
+		return "";
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public List<CommentVO> CommentList() throws Exception{
+		return commService.listComment();
+	}
+	
+
+}

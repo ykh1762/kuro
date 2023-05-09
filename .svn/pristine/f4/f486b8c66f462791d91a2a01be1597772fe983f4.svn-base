@@ -1,0 +1,12 @@
+package kr.or.ddit.mapper;
+
+import java.util.List;
+
+import kr.or.ddit.contact.vo.ContactVO;
+
+public interface ContactMapper {
+
+	public List<ContactVO> getContactList();
+
+
+}

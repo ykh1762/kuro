@@ -1,0 +1,17 @@
+package kr.or.ddit.schedule.service;
+
+import java.util.List;
+
+import kr.or.ddit.schedule.vo.FullCalendarVO;
+
+
+public interface ICalService {
+	
+	public List<FullCalendarVO> list();
+
+	public void register(FullCalendarVO calendar)throws Exception;
+
+	public void remove(FullCalendarVO calendar) throws Exception;
+
+	public void update(FullCalendarVO calendar) throws Exception;
+}

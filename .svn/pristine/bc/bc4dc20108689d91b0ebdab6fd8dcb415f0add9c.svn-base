@@ -1,0 +1,16 @@
+package kr.or.ddit.mapper;
+
+import java.util.List;
+import kr.or.ddit.schedule.vo.ScheduleVO;
+
+public interface ScheduleMapper {
+
+	public List<ScheduleVO> list();
+	
+	public int register(ScheduleVO calendar) throws Exception;
+	
+	public int remove(String schCode)throws Exception;
+	
+	public int update(ScheduleVO calendar) throws Exception;
+
+}

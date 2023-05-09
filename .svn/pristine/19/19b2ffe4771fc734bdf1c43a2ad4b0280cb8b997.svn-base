@@ -1,0 +1,28 @@
+package kr.or.ddit.schedule.vo;
+
+import java.util.Date;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonFormatTypes;
+
+import lombok.Data;
+
+@Data
+public class scheduleVO {
+	private String schNo;					// 일정번호
+	private String empNo;					// 사원번호
+	private String accNo;					// 거래처번호
+	private String commNo;					// 댓글번호
+	private String goodNo;					// 좋아요번호
+	private String timNo;					// 타임라인번호
+	private String schTitle;				// 제목
+	private String schContent;				// 내용
+	private String schStart;				// 시작일
+	private String schEnd;					// 종료일
+	private String schLocation;				// 장소
+	private String schRead;					// 공개여부
+	private String schColor;				// 일정 색상
+	
+	private List<scheduleVO> list;		// 일정목록
+}

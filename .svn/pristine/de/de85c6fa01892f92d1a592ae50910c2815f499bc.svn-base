@@ -1,0 +1,24 @@
+package kr.or.ddit.approval.vo;
+
+import lombok.Data;
+
+@Data
+public class RecVO {
+
+	private String rec_code;
+	private String app_code;
+	private String dep_code;
+	private String emp_pos;
+	private String rec_reg;
+	private String rec_name;
+	private int rec_ann;
+	private String rec_academy;
+	private String rec_major;
+	private String rec_reason;
+	private String rec_rec;
+	private String rec_pcom;
+	private String rec_ppos;
+	private String rec_pdep;
+	private String rec_pperiod;
+	private int rec_pann;
+}

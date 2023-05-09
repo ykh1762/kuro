@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.ddit.mapper.EmployeeMapper">
+
+	<select id="getEmp" resultType="empVO">
+		select
+			EMP_NO, CO_CODE, DEP_CODE, EMP_POS, EMP_NAME, EMP_REG, EMP_POSTCODE, EMP_ADDR, 
+			EMP_ADDR2, EMP_DATE, EMP_EMAIL, EMP_TEL, EMP_PW, EMP_MSG, EMP_PV, EMP_RDATE			
+		from employee
+		where
+			EMP_NO = #{empNo}
+	</select>
+
+	<select id="loginCheck" resultType="empVO">
+		select
+			EMP_NO, CO_CODE, DEP_CODE, EMP_POS, EMP_NAME, EMP_REG, EMP_POSTCODE, EMP_ADDR, 
+			EMP_ADDR2, EMP_DATE, EMP_EMAIL, EMP_TEL, EMP_PW, EMP_MSG, EMP_PV, EMP_RDATE					
+		from employee
+		where
+			EMP_NO = #{empNo}
+		and
+			EMP_PW = #{empPw}
+	</select>
+
+
+
+
+</mapper>
+
+
+
+

@@ -1,0 +1,16 @@
+package kr.or.ddit.mapper;
+
+import java.util.List;
+
+import kr.or.ddit.message.vo.MesrecVO;
+
+
+public interface MesRecMapper {
+
+	public List<MesrecVO> getMessageList();
+	
+	public MesrecVO getMessage(String mesCode);
+
+	public void write(MesrecVO mesVO);
+
+}

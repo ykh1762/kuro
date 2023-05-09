@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.ddit.mapper.EmployeeMapper">
+
+	<select id="getEmp" resultType="empVO">
+		select
+			EMP_NO, CO_CODE, DEP_CODE, EMP_POS, EMP_NAME, EMP_REG, EMP_POSTCODE, EMP_ADDR, 
+			EMP_ADDR2, EMP_DATE, EMP_EMAIL, EMP_TEL, EMP_PW, EMP_MSG, EMP_PV, EMP_RDATE			
+		from employee
+		where
+			EMP_NO = #{empNo}
+	</select>
+
+	<select id="loginCheck" resultType="empVO">
+		select
+			EMP_NO, CO_CODE, DEP_CODE, EMP_POS, EMP_NAME, EMP_REG, EMP_POSTCODE, EMP_ADDR, 
+			EMP_ADDR2, EMP_DATE, EMP_EMAIL, EMP_TEL, EMP_PW, EMP_MSG, EMP_PV, EMP_RDATE					
+		from employee
+		where
+			EMP_NO = #{empNo}
+		and
+			EMP_PW = #{empPw}
+	</select>
+
+	<select id="list" resultType="empVO">
+	select 
+    	  a.EMP_NO
+    	, a.CO_CODE
+    	, a.DEP_CODE
+    	, a.EMP_POS
+    	, a.EMP_NAME
+    	, a.EMP_POSTCODE
+    	, a.EMP_ADDR
+    	, a.EMP_DATE
+    	, a.EMP_EMAIL
+    	, a.EMP_TEL
+    	, b.DEP_NAME
+    	, (case b.EMP_NO when '20020001' then '#' else b.EMP_NO end) as HEmpNo	/* 부서장 사번 */
+	from employee a, dep b
+	where a.DEP_CODE = b.DEP_CODE
+	</select>
+
+	<select id="selectMember" parameterType="string" resultType="empVO">
+		select
+			EMP_NO, CO_CODE, DEP_CODE, EMP_POS, EMP_NAME, EMP_POSTCODE, EMP_ADDR, 
+			EMP_ADDR2, EMP_DATE, EMP_EMAIL, EMP_TEL, EMP_PW, EMP_MSG, EMP_PV, EMP_RDATE			
+		from employee
+		where
+			EMP_NO = #{empNo}
+	</select>
+
+</mapper>
+
+
+
+

@@ -1,0 +1,45 @@
+package kr.or.ddit.comment.service;
+
+import java.util.List;
+
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Service;
+
+import kr.or.ddit.comment.vo.CommentVO;
+import kr.or.ddit.free.vo.FreeVO;
+import kr.or.ddit.mapper.CommentMapper;
+import kr.or.ddit.mapper.FreeMapper;
+
+@Service
+public class CommentServiceImpl implements ICommentService {
+
+	@Inject
+	private CommentMapper commapper;
+	
+	@Inject
+	private FreeMapper freeMapper;
+	
+	@Override
+	public void insertComm(CommentVO commVO) {
+		// commType 정의
+		// empNo 정의
+		// commPath 정의
+		commapper.insertComm(commVO);
+	}
+	
+	
+	@Override
+	public List<CommentVO> list() {
+		return commapper.list();
+	}
+
+	
+
+	
+	
+
+	
+
+
+}

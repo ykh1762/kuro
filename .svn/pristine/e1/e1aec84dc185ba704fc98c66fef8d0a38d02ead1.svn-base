@@ -1,0 +1,11 @@
+package kr.or.ddit.message.service;
+
+import java.util.List;
+
+import kr.or.ddit.message.vo.MessageVO;
+
+public interface IMessageService {
+
+	public List<MessageVO> getMessageList();
+
+}

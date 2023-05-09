@@ -1,0 +1,22 @@
+package kr.or.ddit.contact.service;
+
+import java.util.List;
+
+import kr.or.ddit.contact.vo.ContactVO;
+
+public interface IContactService {
+
+	public List<ContactVO> getContactList();
+
+	public void register(ContactVO conVO);
+
+	public List<ContactVO> getTehList();
+
+	public List<ContactVO> getSalesList();
+
+	public List<ContactVO> getMnList();
+
+
+	
+
+}

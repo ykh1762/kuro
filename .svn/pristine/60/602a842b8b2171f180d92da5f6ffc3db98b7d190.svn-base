@@ -1,0 +1,13 @@
+package kr.or.ddit.mapper;
+
+import java.util.Map;
+
+import kr.or.ddit.approval.vo.ApFormVO;
+import kr.or.ddit.approval.vo.RecVO;
+
+public interface AppMapper {
+
+	public ApFormVO selectForm(String apfName);
+	public void create(RecVO rec) throws Exception;
+
+}

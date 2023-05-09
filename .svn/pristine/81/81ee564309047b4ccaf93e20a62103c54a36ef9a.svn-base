@@ -1,0 +1,95 @@
+package kr.or.ddit.message.controller;
+
+
+
+import java.util.List;
+
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import kr.or.ddit.attfile.vo.AttFileVO;
+import kr.or.ddit.employee.vo.EmployeeVO;
+import kr.or.ddit.free.vo.FreeVO;
+import kr.or.ddit.message.service.IMessageService;
+import kr.or.ddit.message.vo.MessageVO;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@Controller
+@RequestMapping("/message")
+public class MessageController {
+	
+	@Inject
+	private IMessageService messageService;
+	
+	//받은 쪽지함
+	@GetMapping("/home")
+	public String MessageRecieve() {
+		
+	
+	
+	return "message/home";
+		
+		
+	}
+	
+	//보낸 쪽지함
+	@GetMapping("/list2")
+	public String MessageSend(Model model) {
+		
+		List<MessageVO> messageList = messageService.getMessageList();
+		model.addAttribute("messageList", messageList);
+			
+		//각 게시글의 작성자 List<EmployeeVO> 구하기
+		List<EmployeeVO> empList = messageService.getEmpByMsgList(messageList);
+		model.addAttribute("empList", empList);
+		
+		
+		return "message/list2";
+	}
+	
+	
+	
+	@GetMapping("/write")
+	public String write() {
+		
+		return "message/write";
+	}
+	
+	
+	
+	@GetMapping("/store")
+	public String store() {
+		
+		return "message/store";
+	}
+	
+	//보낸 쪽지 detail
+	@GetMapping("/detail")
+	public String detail(String mesCode, Model model) {
+		
+		
+		MessageVO messageVO = messageService.getMessage(mesCode);
+		
+		// 작성자 empVO 구하기
+		EmployeeVO empVO = messageService.getEmpByMessage(messageVO);
+		model.addAttribute("empVO", empVO);
+		
+		// emp의 profile 구하기
+		AttFileVO afVO = messageService.getAf(empVO.getEmpNo());
+		model.addAttribute("afVO", afVO);
+		
+		// 사원 목록의 프로필 가져오기
+		//List<AttFileVO> afList = messageService.getAfByEmpList(empList);
+		//model.addAttribute("afList", afList);
+		
+		return "message/detail";
+	}
+	
+	
+	  }
+	
